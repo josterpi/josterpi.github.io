@@ -1,0 +1,91 @@
+---
+layout: josterpi
+title: LaTeX notes
+last_updated: 2/16/2006
+---
+<h1>Jeremy Osterhouse's home page</h1>
+<div id="content">
+<a href="http://www.josterpi.com">[home]</a>
+<h2>Latex notes</h2>
+<p>I started using LaTeX fall semester of 2004, when I had to do a number of longish proofs for a math class and I needed to type them out. My experience with LaTeX is that it does things really nicely, but it's tough to get started. I have spent a lot of time knowing what I want to do, but struggling to find how to do it in LaTeX.</p> 
+<p>LaTeX handles math really well. I first started playing with LaTeX for a math class in which I had to type out a number of longish theorems. When I took Cryptology, I did almost all of my homework in LaTeX. For a long time, I wanted to write my resume in LaTeX, but couldn't figure out how to do it to my satisfaction.  I originally wrote my resume in Microsoft Word. It got the job done, but these days I've been using <a href="http://www.openoffice.org/">openoffice.org</a> exclusively and I find that it formats things slightly differently than Word. Besides, writing your resume in LaTeX is just cool.</p>
+
+<h2>Getting started with LaTeX in 5 minutes</h2>
+
+<p>I may write a LaTeX tutorial some day, but not today. Here's the template I use when writing a standard school paper: one inch margins, name and so on in the upper right corner, double spaced.<p>
+<textarea cols="80" rows="20">
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath} % just math
+\usepackage{amssymb} % allow blackboard bold (aka N,R,Q sets)
+\usepackage{ulem}
+\linespread{1.6}  % double spaces lines
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\begin{document}
+
+\linespread{1} % single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+\begin{flushright}
+My Name \\
+My first \LaTeX paper \\
+\today
+\end{flushright}
+
+Whatever you want to say goes here.
+
+\end{document}
+</textarea>
+<br />
+I should find some good LaTeX references and include them here...<br/>
+
+<h2>Latex examples/samples</h2>
+Here are a number of samples from my math class Sequences, Series, and Foundations:
+<ul>
+<li>Convergence of a recursively defined sequence [<a href="/latex/math5.tex">tex</a>][<a href="/latex/math5.pdf">pdf</a>]</li>
+<li>Proof of the Pinching Theorem [<a href="/latex/math6.tex">tex</a>][<a href="/latex/math6.pdf">pdf</a>]</li>
+<li>Two proofs of statements about convergence [<a href="/latex/math7.tex">tex</a>][<a href="/latex/math7.pdf">pdf</a>]</li>
+<li>An exercise about Euler's constant [<a href="/latex/math8.tex">tex</a>][<a href="/latex/math8.pdf">pdf</a>]</li>
+<li>A problem about infinite series and the Alternating-Series test [<a href="/latex/math9.tex">tex</a>][<a href="/latex/math9.pdf">pdf</a>]</li>
+</ul>
+
+<p>I actually took notes for most of the semester for Cryptology. That's a lot of notes. When I reviewed them, I noticed a lot of typos, but here they are, nonetheless, in <a href="/latex/math-notes.tex">tex</a> and <a href="/latex/math-notes.pdf">pdf</a>. I think it's the biggest document I've ever written.</p>
+
+<h3>My resume</h3>
+<p>I finally figured out how to write my resume in LaTeX. I've done a lot of googling, and I haven't found anything like it out there. Feel free to use it. I think there's a better way to do what I'm trying to do, but I haven't found the time yet to figure that out. It gives a lot of errors when I run it through latex. Please email me if you know a better way to do this. Here's the (somewhat) sanitized <a href="latex/resume-template.tex">source</a> of my <a href="resume.pdf">resume</a>.</p>
+
+<h2>Some things I've learned along the way...</h2>
+
+<h3>Layout</h3>
+<p>Not being able to figure out how to have smaller margins is something that plagued me for a long time. here's the original way I did it:<br/>
+<code>\textwidth 6.65truein<br/>
+\textheight 9.5truein<br/>
+\oddsidemargin -0.2in<br/>
+\topmargin -0.6in</code><br/>
+This get the job done, more or less. A much better solution is to use the geometry package:<br/>
+<code>\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}</code><br/>
+This defines one inch margins all around, with no header. Both of these go in the header.</p>
+
+<p>To doublespace, put this in the header: <code>\linespread{1.6}</code></p>
+
+<p>I like to have some space between my paragraphs and not indent them. Put in the header:<br/>
+<code>\parskip 5pt<br/> 
+\parindent 0pt</code></p>
+
+<h3>Miscelaneous</h3>
+<p>I found a neat little package that allows you do to underlining and other font effects. It's called <code>ulem</code>. (<code>\usepackage{ulem}</code> in header)
+<ul>
+	<li><code>\uline{}</code> - underline</li>
+	<li><code>\uuline{}</code> - double underline</li>
+	<li><code>\uwave{}</code> - wavy underline</li>
+	<li><code>\sout{}</code> - strikeout</li>
+	<li><code>\xout{}</code> - scratchout(?) (lots of diagonal lines)</li>
+</ul></p>
+
+<p>You know that neat black filled in square you put at the end of a proof? Here's how you can do it in LaTeX: <code>\hfill$\square$</code></p>
+
+<p>I use this in my resume, but I'll include it here. I was looking for a smaller bullet point that <code>\bullet</code> but couldn't find one. So I made my own: <code>\newcommand{\sbullet}{\,\begin{picture}(1,1)(0,-3)\circle*{3}\end{picture}\ }</code>. This is for use in text mode. Not sure what it would do in math mode.</p>
+
+<p>You know that funny way of writing letters to mean certain sets of numbers? Z is the integers, N is the natural numbers, and so on. It's called blackboard bold, and you can do it in LaTeX by including the packaged <code>amssymb</code> and then writing in math mode: <code>\mathbb{Z}</code></p>
+
+<a href="http://www.josterpi.com">[home]</a>
+</div>

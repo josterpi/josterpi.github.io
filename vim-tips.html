@@ -1,0 +1,98 @@
+---
+layout: josterpi
+title: Vim tips
+last_updated: 2/16/2006
+---
+	<h1>Jeremy Osterhouse's home page</h1>
+<div id="content">
+	<a href="http://www.josterpi.com/">[home]</a>
+<h2>Vim tips</h2>
+My collection of vim tips. Good things to know, or just interesting. I should use these as sigs for my email or something.<br/>
+<p>Add an introduction...</p>
+<p>Add conventions...</p>
+<p>Bram Moolenaar, the main guy behind vim, has some good things to say about using vim in his <a href="http://www.moolenaar.net/habits.html">Seven habits of effective text editing</a><br/>
+There's always the main <a href="http://www.vim.org">vim</a> website. If you don't have vim, you can download it there, for unix, windows, mac, and others.<br/>
+I just found <a href="http://jmcpherson.org/editing.html">this</a> very nice article on efficient editing with vim.</p>
+
+
+<h2>If you know nothing else</h2>
+Vim help is useful! (<code>:help</code> OR <code>:h</code>) Example: <code>:h tabs</code> will pull up help on tabstop. <code>:h z</code> will pull up help for the <code>z</code> command and commands starting with z. <code>:h v_{char}</code> will pull up help on {char} when in visual mode. <code>:h :c</code> will pull up help on commands starting with c. And so on. I used to almost always have a window up with the online vim documentation. Then I discovered that it's all write there just a few keystrokes away.<br/>
+
+<h2>Movement</h2>
+
+<h3>Little Movements</h3>
+<code>I</code> - go to the beginning of the line and go into insert<br/>
+<code>A</code> - go to the end of the line and go into insert<br/><br/>
+
+<code>0, ^</code> -- Move to the beginning of the line, and first non-blank character of the line, respectively<br/>
+<code>$</code> -- Move to the end of the line<br/><br/>
+
+<code>f{char}</code> - go forward to {char} on the current line<br/>
+<code>F{char}</code> - go backwards to {char} on the current line<br/></br>
+
+<code>t{char}</code> - go forward to {char} on the current line, but stop before it<br/>
+<code>T{char}</code> - go backwards to {char} on the current line, but stop after it<br/><br/>
+
+<code>;</code> - repeat last f,F,t,T<br/>
+<code>,</code> - repeat last f,F,t,T backwards <br/><br/>
+
+<code>gj,gk</code> -- Move down or up one display line. Helpful for navigating in long lines that wrap around.<br/>
+
+<h3>Big Movements</h3>
+
+<code>gg</code> -- Move to the very top of the file<br/>
+<code>G</code> -- move to the very bottom of the file<br/>
+if either command is proceeded by [count], moves to the [count] line from the top<br/><br/>
+
+<code>H,M,L</code> -- (think, High, Middle, Low) Put the cursor on the first line, middle, and bottom of the window. If H or L are proceeded by [count], move to the [count] line from the top of bottom<br/><br/>
+
+<code>zt,zz,zb</code> -- (think Top, z?, Bottom) Move the window such that the current line is on the top of the window, the middle, and the bottom. Great for seeing context.<br/><br/>
+
+<code>'' OR ``</code> -- Go to the last jump point. Useful for jumping between two places in a file.<br/>
+<code>m{a-z}</code> -- create a mark {a-z}<br/>
+<code>'{a-z}, `{a-z}</code> -- jump to a mark {a-z} ` takes you to mark, ' takes you to first character on the mark's line<br/><br/>
+
+<code>*</code> -- Search for the word under the cursor<br/><br/>
+
+<code>/</code> - search forward for whatever text you type in<br/>
+<code>?</code> - search backwards for whatever text you type in<br/>
+
+<h2>Options</h2>
+
+If you edit text files with vim, setting linebreak (<code>:set linebreak</code>) will make sure that vim breaks lines on word barriers, improving readability significantly. Note: it only breaks the line on the screen, not in the file<br/><br/>
+
+If you have wrap on and would like to see when a line is wrapped or not, you can set "showbreak" to a character which will be appended to each wrapped line. (i.e., <code>:set showbreak=&gt;</code>)<br/>
+
+To change the width of tabs to n characters - <code>:set tabstop=n</code><br/>
+To change the width of indent to n characters - <code>:set shiftwidth=n</code><br/>
+Lots of helpful info on tabs in vim - <code>:help tabstop</code><br/>
+
+<h2>Advanced. Or, bet you didn't know...</h2>
+
+If you want to search for something you select in visual mode: 1) yank 2) / 3) <code>CTRL-R"</code> 4) &lt;enter&gt; That is: <code>y/^R"&lt;enter&gt;</code> (note: " is the default yank buffer. You could use a named buffer as well if you want.)<br/><br/>
+
+<code>~</code> -- switch case of character under cursor<br/><br/>
+
+<code>i_CTRL-A</code> -- In insert mode, insert the previously inserted text.<br/><br/>
+
+<code>{visual}g?</code> -- Rot13 encode highlighted text<br/>
+<code>g??</code> -- Rot13 encode the current line<br/><br/>
+
+<code>CTRL-A</code> -- Add [count] to the number at or after the cursor<br/>
+<code>CTRL-X</code> -- Subtract [count] from the number at or after the cursor<br/><br/>
+
+<code>J</code> - join the current line with the line below it.<br/><br/>
+
+<code>.</code> -- repeat the last change<br/><br/>
+
+If you want to change a quotation: "This is a quotation"<br/>
+And want to change it to: "blablabla"<br/>
+Start on the first letter of the quotation and press <code>ct"</code> (Change Till ")<br/><br/>
+
+<code>ga</code> - with your cursor over a character, it will show you the decimal, hex, and octal codes of the character. Great for non printable characters.<br/><br/>
+
+<p>To insert special characters, you'll be interested in digraphs. <code>:digraphs</code> will show you a complete table of special characters, plus their two character code, plus their ascii number. You can insert digraphs using ctrl-k plus the two character code. For example <code>ctrl-k SX</code> results in ^B being inserted</p>
+
+<img src="/media/viman.gif"><br/>
+	<a href="http://www.josterpi.com/">[home]</a>
+</div>

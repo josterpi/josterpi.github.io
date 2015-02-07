@@ -1,0 +1,63 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath}	% just math
+\usepackage{amssymb}	% allow blackboard bold (aka N,R,Q sets)
+\linespread{1.6}	% double spaces lines
+
+\textwidth 6.5truein  % These 4 commands define more efficient margins
+\textheight 9.5truein
+\oddsidemargin 0.0in
+\topmargin -0.6in
+
+\parindent 0pt	% let's not indent paragraphs
+\parskip 5pt  % Also, a bit of space between paragraphs
+
+\begin{document}
+\begin{flushright}
+\linespread{1}	% single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+Jeremy Osterhouse \\
+\today
+\end{flushright}
+
+{\bf Problem.} Prove the Pinching Theorem: \emph{Suppose that for all sufficiently large n,}
+\[
+a_n \leq b_n \leq c_n.
+\]
+\emph{If $\lim{a_n} = \lim{c_n} = L$, then $\lim{b_n}=L$.}
+
+{\bf Solution.} To prove this, we will use the definition of the limit of a sequence. Because we know that $\lim{a_n} = \lim{c_n} = L$, we know by the definition of the limit of a sequence that,
+\[
+L-\epsilon_a < a_n < L+\epsilon_a
+\]
+for any $\epsilon_a$ with all sufficiently large $n$ and that,
+\[
+L-\epsilon_c < c_n < L+\epsilon_c
+\]
+for any $\epsilon_c$ with all sufficiently large $n$.
+
+Because we know that $a_n<c_n$, let $\epsilon = max\{\epsilon_a,\epsilon_c\}$. Now we get
+\[
+L-\epsilon < a_n \leq c_n < L + \epsilon
+\]
+But we know that $a_n \leq b_n \leq c_n$. For any $\epsilon$, then there exists an $\epsilon_b$ such that for sufficiently large $n$,
+\[
+L-\epsilon \leq L-\epsilon_b < a_n \leq b_n \leq c_n < L+\epsilon_b \leq L+\epsilon.
+\]
+Removing the unneccesary terms of this inequality we get,
+\[
+L-\epsilon < b_n < L+\epsilon
+\]
+for any $\epsilon$ with all sufficiently large $n$. This is equivalent to saying that $\lim{b_n}=L$.
+\hfill$\square$
+
+%add dollar signs around visual selection and leave in insert at end:
+%-->`>a$`<i$f$a
+
+%add QED symbol abbreviation
+%-->ab qed. \hfill$\square$ 
+
+
+
+
+\end{document}

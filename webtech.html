@@ -1,0 +1,410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+	<style type="text/css">
+		body {
+			background-color: #99CCFF;
+			margin-right: 15%;
+			margin-left: 15%;
+		}
+		div.content {
+			margin-top: 0px;
+			padding-left: 80px;
+			padding-right: 80px;
+			
+		}
+		a:link {
+			color: #000066;
+			text-decoration: none;
+		}
+		a:visited {
+			color: #CC0000;
+			text-decoration: none;
+		}
+		a:hover {
+			background-color: #6699FF;
+		}
+		h1 {
+			font-family: sans-serif;
+			font-size: xx-large;
+			font-stretch: normal;
+			font-style: normal;
+			font-weight: bold;
+			color: #000066;
+			text-align: center
+		}
+		h2 {
+			font-family: sans-serif;
+			font-size: x-large;
+			font-stretch: normal;
+			font-style: normal;
+			font-weight: bold;
+			color: #000066;
+			text-align: left;
+		}
+		h3 {
+			font-family: sans-serif;
+			font-size: large;
+			font-stretch: normal;
+			font-style: normal;
+			font-weight: bold;
+			color: #000066;
+			text-align: left;
+			padding-left: 15px;
+		}	
+		p:first-letter {
+			font-size: x-large;
+		}
+		p {
+			font-family: sans-serif;
+			font-size: normal;
+			font-style: normal:
+			font-weight: normal;
+			color: #000000;
+			text-align: justify;
+		}
+		code {
+			font-family: monospace;
+			font-size: normal;
+			font-stretch: normal
+			font-style: normal:
+			font-weight: normal;
+			color: #000000;
+			text-align: justify;			
+		}
+		div.codesnip {
+			font-family: monospace;
+			font-size: normal;
+			font-stretch: normal;
+			text-align: left;
+			color: #000000;
+			background-color: #3399FF;
+			border-style: solid;
+			border-width: 2px;
+			border-color: #0000CC;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding: 3px 3px 3px 3px;
+		}
+	</style>
+	</head>
+<body>
+<h2>Conventions</h2>
+<p>In the following document, several conventions are used to
+indicate various things. 
+</p>
+<ul>
+	<li><code>code and keywords</code> -
+	This is used for web site addresses and keywords that you would type
+	in. 
+	</li>
+	<li><EM>important terms</EM> - The first time an important term
+	is used. 
+	</li>
+</ul>
+<h1>Overview of Web Technologies</h1>
+<p>In the following section, I hope to briefly explain some of the
+more common world wide web technologies and how they fit together to
+create a complete web page. You may be familiar with some or all of
+this, so feel free to skim. My intention is simply to present a big
+picture look at what is involved in a web page. 
+</p>
+<h2>URL's</h2>
+<p>Let's start with something everyone knows. When you go to a web
+site, you need to know it's URL (Uniform Resource Locater),
+or address. The Internet is composed of thousands of computers
+networked together. Through a system called DNS that I won't get
+into, many computers have easy to remember names. For example, you
+could go to <code>www.google.com</code>. When you type that into your
+browser, your browser first finds which computer the google web site
+is on, then asks that computer for a copy. It then displays that page
+on the screen. What people don't often think about is the <code>http://</code>
+that precedes the address. This is what defines the <em>protocol</em>
+that your browser will use in getting the web page at <code>www.google.com</code>.
+In this case, it uses the HyperText Transfer Protocol. Essentially,
+it is asking for a web page. Other possible protocols include FTP
+(File Transfer Protocol), HTTPS (HTTP Secure), Telnet, and file&mdash;which
+allows you to view files from your computer in your browser. 
+</p>
+<h2>Web pages</h2>
+<p>Now we get to the actual web page itself. Here, it is useful to
+use <em>client/server</em> terminology. The client/server model is
+useful in many areas, but I will stick to its application to web
+pages. In the most simple case, the server has information, and the
+client requests the information. For web pages, you have a computer
+with a web page on it&mdash;this is the server&mdash;and your home
+PC&mdash;which is the client. At the application level, your browser
+requests the web page from the server program. This separation
+between server and client is important. Some web technologies are on
+the client, and some are on the server. The interaction between the
+client and the server is also notable. 
+</p>
+<h3>Client-side</h3>
+<p>Anyone who has been to a web page has some idea what goes on
+client-side. You open up your browser, put in an address, and off you
+go, surfing the world wide web. What is less commonly known is that
+there is a great amount of disparity between browsers, which cause
+web developers no end of grief. Some of the major browsers that are
+available include <a href="http://www.mozilla.org/">Mozilla</a>,
+<a href="http://www.microsoft.com/windows/ie/default.asp">Internet
+Explorer</a>, <a href="http://www.konqueror.org/">Konqueror</a>,
+<a href="http://www.opera.com/">Opera</a>, <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape</a>,
+and <a href="http://www.apple.com/safari/">Safari</a>. The largest
+element to the client side is the HTML (HyperText Markup Language).
+Every web page is written in HTML. The tricky part is how each
+browser displays that HTML. I won't go into it, but keep it is
+important to remember that even though it looks good in your browser,
+it might look awful in someone else's browser. One of the latest web
+developments is the spread of CSS (Cascading Style Sheets). Again,
+browsers do not necessarily support CSS in a uniform or complete
+fashion. Briefly, CSS is used to change how a web page looks. First
+came CSS1 which just affects text. Then came CSS2 which can be used
+for layout. CSS2 has not been widely accepted for layout, but it is
+the future of web layout. Some other technologies that are on the
+client-side include Javascript, Java applets, and Shockwave or Flash
+elements. Javascript is embedded in the HTML and can be used for nice
+looking and useful interactive elements. Menus that scroll out are
+often done with Javascript. Java applets, Shockwave, and Flash
+elements are external files that are downloaded and embedded in the
+web page. Java applets are actually little programs that someone
+programmed and can do almost anything, but are usually not practical
+or needed in most circumstances. Shockwave and Flash can provide very
+nice interfaces and display graphical content well, but require
+expensive software to create and result in large files, which doesn't
+work well for those with dial-up Internet access.
+</p>
+<h3>Server-side</h3>
+<p>What happens on the server is generally invisible. This is good
+because it is secure. If you have information that you only want
+certain people to see, you can keep it on the server and make sure
+only the right people can see it. The server can also do a lot of
+processing that would be impractical for the client. Considering
+Google again, the Google servers stores millions of records and
+return the results to clients' searches. It would be entirely
+impractical for Google's entire database to be present on everyone's
+computer and have everyone search through that database
+themselves. If that happened, searched would start talking
+hours instead of the 0.41-ish seconds that Google takes. What happens
+on the server side is what affects whether a web page is static or
+dynamic. This is a <EM>static</EM> web page. When you want it, you
+ask the server for it, and the server returns exactly this page. In
+the case of a <EM>dynamic</EM> web page, the server must do a bit
+more work. Also, there are a lot of ways that it can do that work.
+One way is through Microsoft's <a href="http://www.asp.net/Default.aspx?tabindex=0&amp;tabid=1">ASP</a>
+(Active Server Pages). Another is <a href="http://www.perl.org/">Perl</a>
+scripts. With <a href="http://java.sun.com/">Java</a> you can create
+<a href="http://java.sun.com/products/javabeans/">JavaBeans</a>. You
+can also embed <a href="http://www.php.net/">PHP</a> into HTML, which
+then gets parsed by the server and passed to the client. In short,
+there are a lot of ways for a server to work before passing an HTML
+document to the client. Now I'd like to talk a little bit about the
+actual server application. There are a couple common web servers.
+Microsoft's server is called <a href="http://www.microsoft.com/WindowsServer2003/iis/default.mspx">Internet
+Information Services</a> (IIS). Probably the most widespread server
+is the <a href="http://httpd.apache.org/">Apache</a> web server.
+Apache is a free program available on most platforms including
+Windows, Linux, and OS X. Everything on the server side goes through
+the web server. Often the work that must be done before a web page is
+ready requires an external program or perhaps a plugin, but this is
+all managed by the web server. Another program that can be present on
+the server side is a database server. For example, a client requests
+a webpage that has an element in a database. The web server will run
+a script through Perl, which will call the database server to return
+a piece of data. The script will then return an HTML document that
+the webserver will send back to the client. Some common free database
+servers include MySQL and PostgreSQL. Perl is a programming language
+that works pretty well for a lot of dynamic content. A recent and
+very good contender in the dynamic content arena is PHP. PHP code is
+embedded in HTML. When a client requests, say, index.php, the server
+will pass it to the PHP interpreter, which will leave all the
+HTML as it is, but run the PHP code
+which will result in a complete HTML >document.
+The server then sends it to the client. There are a two ways to get a
+dynamic webpage. The first is to simply have a page that is
+constructed dynamically on the server with no input from the client.
+The other way involves the client passing the server
+parameters via CGI (Common Gateway Interface). The way to send
+parameters via CGI from the client is as follows: using Google
+once again, I want to search for &quot;stuff&quot;. I go to the
+website and search for &quot;stuff&quot;. Looking at the URL of the
+site it returns, I find
+<code>http://www.google.com/search?hl=en&amp;lr=&amp;ie=UTF-8&amp;oe=UTF-8&amp;q=stuff&amp;btnG=Search</code>.
+We know that <code>http://</code> is the protocol and <code>www.google.com</code>
+is the address, but what is all that other stuff? Well, <code>search</code>
+is the CGI script. The &quot;?&quot; indicates that parameters are to
+follow. Then there is a series of equalities
+separated by ampersands. Without some further investigation,
+I'm not sure what everything is, but I see <code>q=stuff</code> which
+looks like stuff is assigned to q. Then, the script takes that, and
+all of the other inputs, and returns the site based on that search. I
+can reasonably assume that instead of going through the main Google
+page, I can simply replace &quot;stuff&quot; with whatever search I
+want and get the results that way. Another factor is the lack of a
+continuous connection between the the
+client and the server. As it works, the client sends a request. The
+server returns a document. Then the server promptly forgets the
+client. When you use hotmail, yahoo mail, or anything that involves
+logging in, there needs to be some way for the server to know that
+the requests are still coming from you, and in fact who &quot;you&quot;
+are. When you click &quot;next&quot; to see the next email in your
+inbox, how is the server to know who is asking for a next email, and
+what the current email is? This disconnected architecture is
+inherently flawed in maintaining and idea of state, but as you can
+see from the current state of the web, there are workarounds. This is
+one place where <EM>cookies</EM> come into play. Summarily, the
+solutions involve both the client and the server. In closing, it is
+clear that while it is blissfully invisible to the end user, an
+awful lot can go on server-side. 
+</p>
+<h1>Specific Technologies</h1>
+<p>In this next section I hope to explain in more detail some of the
+specific technologies that are key to creating a web page. There is a
+vast amount of online resources pertaining to web
+development so I am not trying to be comprehensive. I simply
+want to provide a solid theoretical foundation from which further
+research will make anything possible. 
+</p>
+<h2>HTML</h2>
+<h3>Tags and Elements</h3>
+<p>The essential element of an HTML document is the text. If you
+write some text in an HTML document, it will appear on the screen.
+What distinguishes an HTML document from a plain text document is the
+presence of <em>tags</em>. Tags change the way that the text appears.
+For example, if I write <code>&lt;em&gt;word&lt;/em&gt;</code>, the
+result in a browser will be <em>word</em>. As you can see, tags are
+enclosed in &lt; and &gt;. Any text will be printed on the screen
+unless it is enclosed in a tag. The text after the <em>start tag</em>
+is affected by the tag, and the text stops being affected after the
+<em>end tag</em>. An end tag is the same as the start tag, but with a
+&quot;/&quot; immediately after the first &quot;&lt;&quot;. There are
+a couple of different types of tags. Some tags are <em>empty</em>.
+They do not affect the following text and they do not have a end tag.
+<code>&lt;br&gt;</code> is such a tag. Some tags do not require an
+end tag, but for the sake of clean, easily understandable HTML, they
+should be included. Many tags accept <em>attributes</em> Attributes
+are included after the name of the tag but
+still within the tag. The basic structure is as follows: <code>&lt;tag
+opt1=&quot;stuff&quot; opt2=&quot;stuff stuff2 stuff3&quot;&gt;My
+Content&lt;/tag&gt;</code>. Attributes are always in the start tag.
+An <em>element</em> is the start tag, the content between the tags,
+and the end tag. There are two types of elements. <em>Block-level</em>
+elements distinguish blocks of text. They usually start on a new line
+and can contain other block-level elements or <em>inline</em>
+elements. Inline elements can only contain text or other inline
+elements. A practical example is an essay. This essay is composed of,
+say, five paragraphs. Each of these paragraphs would be in a
+block-level element. In this case, there is a nice tag for that&mdash;the
+paragraph, or <code>p</code> tag. Now, within each paragraph, there
+are can be additional formatting. If a word is italicized,
+it can be enclosed in the <code>i</code> (for italic) tag. Each
+paragraph begins on a new line, but the italic words are simply
+italic. 
+</p>
+<h3>Miscellaneous Notes</h3>
+<p>You may wonder what you would do if you wanted to use a &quot;&lt;&quot;
+in your text. The answer is entities. A
+special character entity begins with a &quot;&amp;&quot; and ends
+with a &quot;;&quot;. For example, &quot;&lt;&quot; is <code>&amp;lt;</code>.
+There are many entities that you can use. 
+</p>
+<p>White space is another interesting issue in HTML. In short, it has
+very little effect. Any amount of white space is treated as one
+space. I could start writing something in HTML, then press <code>&lt;enter&gt;</code>
+a dozen times, and continue writing. When viewed in a browser, it
+would look like one space. One advantage of this is that you can
+construct HTML documents to be readable using indentation. The
+disadvantage (or maybe it's an advantage!) is that all of the
+formating is done with HTML. 
+</p>
+<p>You can put comments in HTML. This is useful if you want to write
+complex HTML but help other people understand what you are doing. The
+format of a comment is: <code>&lt;-- This is a comment --&gt;</code> 
+</p>
+<p>Letting users input text for searches or logging in is handled by
+<code>form</code> elements filled with such elements as <code>textarea</code>
+and <code>button</code>. 
+</p>
+<h3>Structure of an HTML document</h3>
+<p>Here is the basic structure of an HTML
+document. 
+</p>
+<div class="codesnip">
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;
+<br>&lt;html&gt;
+<br>&nbsp;&nbsp;&lt;head&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My Webpage&lt;/title&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- other head elements --&gt;
+<br>&nbsp;&nbsp;&lt;/head&gt;
+<br>&nbsp;&nbsp;&lt;body&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- all content --&gt;
+<br>&nbsp;&nbsp;&lt;/body&gt;
+<br>&lt;/html&gt; 
+</div>
+<p>The first line states what version of HTML is used in the
+following document. HTML documents will work without this statement,
+but it should be there to let the browser know what to do with the
+rest of the document. <code>HTML 4.0 Transitional</code> should work
+fine in most cases. The next line is the general wrapper tag for the
+entire HTML document. The rest of the document is split into two
+parts. The <code>head</code> element contains general information
+about the document. In this case, the title of the document is given
+using the <code>title</code> element. Client-side scripts as well as
+meta data and style sheets go in the <code>head</code> element.
+Finally, the <code>body</code> element contains all of the content of
+the document. Everything that you have read so far is in the body. 
+</p>
+<h2>CSS</h2>
+<p>CSS (or Cascading Style Sheets) are a recent addition to web page
+design. The idea behind CSS is to separate content from presentation.
+If you look at the source of this document, you'll see that I start
+out with a style sheet in the head, then all of the content is pretty
+much straight forward. All of the HTML tags I use in this document
+simply define the structure of the document. All of the colors and
+fonts are defined in the CSS style sheet. The design on a web site
+can be broken into three parts. The most obvious part is the content.
+The content is all of the words and the pictures that are present on
+a web site. Now, the content is meaningless if there is no structure.
+In an essay the structural elements would include a name, date,
+class, etc. Then there would be a title. Then you have the paragraphs
+in the essay. Without this structure, you only have a string of
+words. Finally, you have the layout. Again using the essay example,
+the layout includes what font you use, what your page margins are,
+whether your name is in the upper right or upper left of the page,
+whether your title is in bold, etc. So in a web page, HTML defines
+the structure and CSS defines the layout. Since these are separate,
+the layout can change drastically without having to even touch the
+content and structure. Instead of getting into details, <a href="http://www.w3schools.com/css/default.asp">here</a>
+is some good information on CSS. 
+</p>
+<h2>Links</h2>
+<p>There is a vast number of resources on the web. Here are some good
+ones. 
+</p>
+<ul>
+	<li><a href="http://www.htmlhelp.com/reference/html40/">HTML 4.0 Reference</a></li>
+	<li><a href="http://www.evrsoft.com/">1st Page 2000</a> - An<SPAN LANG="en-US"> excellent </SPAN>free HTML editor</li>
+	<li><a href="http://bluefish.openoffice.nl/index2.html">Bluefish</a> - An excellent HTML editor for Linux.</li>
+	<li><a href="http://www.w3schools.com/css/">w3schools.com's	CSS tutorial and reference</a></li>
+	<li><a href="http://www.wdvl.com/">Web Developer's Virtual Library</a> - Contains lots of information on everything.</li>
+	<li><a href="http://www.mezzoblue.com/">mezzoblue</a> - Canadian web designer shares his wisdom on CSS.</li>
+	<li><a href="http://www.csszengarden.com/">CSSZenGarden</a> - Behold the power of CSS.</li>
+	<li><a href="http://glish.com/css/">Glish</a> - lots of useful CSS examples.</li>
+	<li><a href="http://jigsaw.w3.org/css-validator/">W3C	CSS Validator</a></li>
+	<li><a href="http://validator.w3.org/">W3C	HTML Validator</a></li>
+	<li><a href="http://www.php.net/">PHP</a> - The official PHP web site. Contains the manual.</li>
+	<li><a href="http://www.sqlcourse.com/">SQLCourse.com</a> - Intro course on SQL</li>
+	<li><a href="http://www.w3schools.com/sql/">w3schools.copm's SQL tutorial</a></li>
+	<li><a href="http://www.oreillynet.com/pub/ct/19">More	info on SQL</a></li>
+	<li><a href="http://dev.mysql.com/doc/">MySQL Documentation</a></li>
+	<li><a href="http://phpnuke.org/index.php">PHP-Nuke</a></li>
+	<li><a href="http://www.phpbb.com/">phpBB</a></li>
+	<li><a href="http://phorum.org/">Phorum</a></li>
+</ul>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+	_uacct = "UA-367442-1";
+	urchinTracker();
+</script>
+</body>
+</html>
