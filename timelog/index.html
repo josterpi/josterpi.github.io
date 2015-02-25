@@ -36,7 +36,7 @@
 
     </form>
     <div id="dates">
-        <a href=""></a><h2></h2>
+        <a class="js-date-prev" href="">&lt;</a><span> Today </span><a class="js-date-next" href="">&gt;</a>
     </div>
     <ul id="history">
     </ul>
@@ -199,15 +199,6 @@ $(function () {
     })
 
     $('#what').focus()
-    var history = document.getElementById("history")
-    history.innerHTML = retrieve()
-    /*
-    $('#start').click(function() {
-        ts('start')
-    })
-    $('#stop').click(function() {
-        ts('stop')
-    })*/
     var app = new AppView({collection: new NoteCollection(), el: $('#ts')})
     window.app = app
 
