@@ -1,4 +1,6 @@
-<!doctype html><html>
+---
+layout: bare
+---
 <head>
     <title>Timelog</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"a></script>
@@ -45,7 +47,6 @@
     <script type="text/template" id="note-tmpl">
 <li><%= time %> - <%= note %> <span class="duration"><%= duration %></span></li>
     </script>
-</body>
 <script>
 $(function () {
     var sameday = function(as) {
@@ -205,4 +206,5 @@ $(function () {
 
     })
 </script>
-</html>
+{% include tracking.html %}
+</body>

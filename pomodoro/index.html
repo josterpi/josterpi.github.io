@@ -1,116 +1,125 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Pomodoro Timer</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <style>
-            html, body {
-                height: 100%;
-                overflow: hidden;
-                background-color: #354458;
-                font-family: helvetica, ariel, sans-serif;
-                color: #e9e0d6;
-                position: relative;
-            }
-            #timer {
-                width: 100%;
-                height: 100%;
-            }
-            .alarm {
-                background-color: #ca311a !important;
-            }
-            #bar {
-                background-color: #3a9ad9;
-                height: 90%;
-                width: 100%;
-                font-size: 5em;
-            }
-            #progress-bar {
-                color: rgba(0,0,0,0);
-            }
-            #progress-bar:hover {
-                color: #e9e0d6;
-            }
-            #numbers {
-            }
-            #numbers div {
-                display: inline-block;
-                width: 20%;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="timer">
-            <div id="numbers"><div>0</div><div>5</div><div>10</div><div>15</div><div>20</div></div>
-            <div id="progress-bar"><div id="bar">&nbsp;</div></div>
-        </div>
-        <script>
-            $(function () {
-                // 25 min * 60 sec * 1000 ms / 1000 (.1 %)
-                var interval, time, total_time
-                total_time = interval = time = 25 * 60
-                var width = 100.0
-                var $el = $('#bar')
-                function done() {
-                    $el.css('width', '100%')
-                    $el.css('background-color', '#ca311a')
-                    var runcount = 0
-                    var interval = setInterval(function() {
-                        runcount += 1;
-                        if (runcount === 5) {
-                            clearInterval(interval)
-                            setTimeout(function() {
-                                $el.css('background-color', '#354458')
-                                $el.toggle()
-                                $el.css('color', '#e9e0d6')
-                            }, 300)
-                        }
-                        $el.toggle()
-                    }, 300)
-                }
-                function shrink() {
-                    width -= 0.1
-                    $el.css('width', width + '%')
-                    if (width > 0) {
-                        setTimeout(shrink, interval)
-                    } else {
-                        done()
+---
+layout: bare
+---
+<head>
+    <title>Pomodoro Timer</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #354458;
+            font-family: helvetica, ariel, sans-serif;
+            color: #e9e0d6;
+            position: relative;
+        }
+        #timer {
+            width: 100%;
+            height: 100%;
+        }
+        .alarm {
+            background-color: #ca311a !important;
+        }
+        #bar {
+            background-color: #3a9ad9;
+            height: 90%;
+            width: 100%;
+            font-size: 5em;
+        }
+        #progress-bar {
+            color: rgba(0,0,0,0);
+        }
+        #progress-bar:hover {
+            color: #e9e0d6;
+        }
+        #numbers {
+        }
+        #numbers div {
+            display: inline-block;
+            width: 20%;
+        }
+        .about {
+            float: right;
+        }
+        a {
+            text-decoration: none;
+            color: #3a9ad9;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">
+        <div id="numbers"><div>0</div><div>5</div><div>10</div><div>15</div><div>20</div></div>
+        <div id="progress-bar"><div id="bar">&nbsp;</div></div>
+        <!-- <div class="about"><a href="about/">About this page</a></div> -->
+    </div>
+    <script>
+        $(function () {
+            // 25 min * 60 sec * 1000 ms / 1000 (.1 %)
+            var interval, time, total_time
+            total_time = interval = time = 25 * 60
+            var width = 100.0
+            var $el = $('#bar')
+            function done() {
+                $el.css('width', '100%')
+                $el.css('background-color', '#ca311a')
+                var runcount = 0
+                var interval = setInterval(function() {
+                    runcount += 1;
+                    if (runcount === 5) {
+                        clearInterval(interval)
+                        setTimeout(function() {
+                            $el.css('background-color', '#354458')
+                            $el.toggle()
+                            $el.css('color', '#e9e0d6')
+                        }, 300)
                     }
+                    $el.toggle()
+                }, 300)
+            }
+            function shrink() {
+                width -= 0.1
+                $el.css('width', width + '%')
+                if (width > 0) {
+                    setTimeout(shrink, interval)
+                } else {
+                    done()
                 }
-                function countdown() {
-                    time -= 1
-                    var minutes = ('0' + (time % 60)).slice(-2)
-                    var display = Math.floor(time/60) + ':' + minutes
-                    $('#bar').html(display)
-                    // Syncronize the width to the time
-                    // This solves problem when timeouts get suppressed
-                    // when a window loses focus
-                    var sync_width = width = time/total_time*100
-                    $el.css('width', sync_width + '%')
-                    if (time > 0) {
-                        setTimeout(countdown, 1000)
-                    } else {
-                        setInterval(countup, 1000)
-                        done()
-                    }
+            }
+            function countdown() {
+                time -= 1
+                var minutes = ('0' + (time % 60)).slice(-2)
+                var display = Math.floor(time/60) + ':' + minutes
+                $('#bar').html(display)
+                // Syncronize the width to the time
+                // This solves problem when timeouts get suppressed
+                // when a window loses focus
+                var sync_width = width = time/total_time*100
+                $el.css('width', sync_width + '%')
+                if (time > 0) {
+                    setTimeout(countdown, 1000)
+                } else {
+                    setInterval(countup, 1000)
+                    done()
                 }
-                function countup() {
-                    time += 1
-                    var minutes = ('0' + (time % 60)).slice(-2)
-                    var display = Math.floor(time/60) + ':' + minutes
-                    $('#bar').html(display)
+            }
+            function countup() {
+                time += 1
+                var minutes = ('0' + (time % 60)).slice(-2)
+                var display = Math.floor(time/60) + ':' + minutes
+                $('#bar').html(display)
+            }
+            //setTimeout(shrink, interval)
+            setTimeout(countdown, 1000)
+            $('#progress-bar').click(function() {
+                var bar = $(this)
+                if (!bar.attr('style')) {
+                    bar.css('color', '#e9e0d6')
+                } else {
+                    bar.css('color', '')
                 }
-                //setTimeout(shrink, interval)
-                setTimeout(countdown, 1000)
-                $('#progress-bar').click(function() {
-                    var bar = $(this)
-                    if (!bar.attr('style')) {
-                        bar.css('color', '#e9e0d6')
-                    } else {
-                        bar.css('color', '')
-                    }
-                })
             })
-        </script>
-    </body>
-</html>
+        })
+    </script>
+    {% include tracking.html %}
+</body>
