@@ -5,82 +5,6 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     <script src="backbone.localStorage-min.js"></script>
-    <script>
-        function store(key, val) {
-            if (typeof(Storage) !== "undefined") {
-                localStorage[key] = val;
-            }
-        }
-        function retrieve() {
-            if (typeof(Storage) !== "undefined") {
-                return localStorage['history'] || "";
-            }
-            return "";
-        }
-        function clear_history() {
-            if (typeof(Storage) !== "undefined") {
-                localStorage['history'] = "";
-            }
-            var history = document.getElementById("history");
-            history.innerHTML = "";
-            window.location = "";
-            return false;
-        }
-        function go(where) {
-            window.document.title = "TS: " + where;
-            window.location = '#' + where;
-        }
-        function get_date_time(start_time) {
-            var now = new Date(Date.now()).toLocaleString()
-            var d, t
-            now = now.split(', ')
-            d = now[0]
-            t = start_time || now[1].slice(0, -6) + now[1].slice(-3)
-            return [d,t]
-        }
-
-        function ts(prefix) {
-            var prefix = prefix || 'start'
-            var what = $('#what')
-            var what_val = what.val()
-            go(what_val)
-            var now = new Date(Date.now())
-            var time_regex = /(\d{1,2}:\d{2}) ?(am|pm)? ?/i
-            var results = time_regex.exec(what_val)
-            var start_time = ""
-            if (results) {
-                start_time = results[1]
-                if (results[2]) {
-                    start_time += ' ' + results[2].toUpperCase()
-                } else {
-                    var hours = now.getHours()
-                    var manual_hours = parseInt(start_time.slice(0,2))
-                    if (hours >= 12 && manual_hours > 6) {
-                        start_time += ' ' + 'AM'
-                    } else if (hours >= 12) {
-                        start_time += ' ' + 'PM'
-                    } else {
-                        start_time += ' ' + 'AM'
-                    }
-                }
-                what_val = what_val.slice(results[0].length)
-            }
-            var date_time = get_date_time(start_time)
-            var what_el = $('<li>').attr('title', date_time[0])
-            what_el.addClass(prefix)
-            what_el.text(date_time[1] + ' - ' + what_val)
-
-            //var what_el = document.createTextNode(now.toLocaleString() + ' - ' + prefix + ' ' + what_val);
-            //var li = document.createElement('li');
-            //li.appendChild(what_el);
-            var history = $('#history')
-            //history.appendChild(li);
-            history.append(what_el)
-            store('history', history.html());
-            what.val("")
-            return false;
-        }
-    </script>
     <style>
         #what {
             width: 100%;
@@ -111,6 +35,9 @@
         <a href="#" id="stop">stop</a>
 
     </form>
+    <div id="dates">
+        <a href=""></a><h2></h2>
+    </div>
     <ul id="history">
     </ul>
         <a href="#" id="clear">Clear record</a>
@@ -121,6 +48,11 @@
 </body>
 <script>
 $(function () {
+    var sameday = function(as) {
+        return function(value) {
+            var ts = value.get('timestamp')
+            return as.getDate() === ts.getDate() && as.getMonth() === ts.getMonth() && as.getYear() === ts.getYear()
+    }}
     var Note = Backbone.Model.extend({
         localStorage: new Backbone.LocalStorage("bb-history"),
         defaults: {
