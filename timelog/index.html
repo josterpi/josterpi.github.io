@@ -146,6 +146,7 @@ $(function () {
             $('#what').focus()
         },
         createStop: function() {
+            ev.preventDefault()
             this.createNote('stop')
             $('#what').focus()
         },
@@ -195,14 +196,33 @@ $(function () {
             this.$list.html('')
             this.collection.each(this.addNote, this)
         },
+        history: function (date) {
+            this.$list.html('')
+                _.each(this.collection.filter(function (n) { return this.date_format(n.get('timestamp')) === date}), function (note) {this.addNote(note)})
+        },
+        date_format: function (date) {
+            // yyyy-mm-dd
+            return date.toISOString().slice(0,10)
+        },
+
 
         render: function () {},
     })
 
+    var appRouter = Backbone.Router.extend({
+        routes: {
+            "history/:date:": "history"
+        },
+        history: function (date) {
+            app.history(date)
+        }
+    }
+
     $('#what').focus()
     var app = new AppView({collection: new NoteCollection(), el: $('#ts')})
     window.app = app
-
+    var router = new AppRouter()
+    Backbone.history.start()
 
     })
 </script>
