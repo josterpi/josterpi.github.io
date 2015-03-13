@@ -159,22 +159,25 @@ $(function () {
             // followed by optional space then optional am/pm
             // ending with optional space. Case insensitive.
             // 8, 8am, 8 pm, 7:23, 7:23am
-            var time_regex = /(\d{1,2})(?::(\d{2}))? ?(am|pm)? ?/i
+            var time_regex = /^(\d{1,2})(?::(\d{2}))? ?(am|pm)? ?/i
             var results = time_regex.exec(what_val)
             if (results) {
                 manual_hours = parseInt(results[1])
                 manual_minutes = parseInt(results[2]) || 0
-                if (!results[3]) {
-                    var hours = now.getHours()
-                    if (hours >= 12 && manual_hours < 6) {
-                        manual_hours += 12
+                // If hours are greater than 24, not a valid time and ignore
+                if (manual_hours < 24) {
+                    if (!results[3]) {
+                        var hours = now.getHours()
+                        if (hours >= 12 && manual_hours < 6) {
+                            manual_hours += 12
+                        }
+                    } else if (results[3].toUpperCase() === 'PM') {
+                            manual_hours += 12
                     }
-                } else if (results[3].toUpperCase() === 'PM') {
-                        manual_hours += 12
+                    what_val = what_val.slice(results[0].length)
+                    now.setHours(manual_hours)
+                    now.setMinutes(manual_minutes)
                 }
-                what_val = what_val.slice(results[0].length)
-                now.setHours(manual_hours)
-                now.setMinutes(manual_minutes)
             }
             this.collection.create({startstop: action, note: what_val, timestamp: now})
             what.val('')
