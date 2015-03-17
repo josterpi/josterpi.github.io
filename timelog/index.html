@@ -27,6 +27,9 @@ layout: bare
         .duration {
             color: #aaa
         }
+        .selected .duration {
+            color: #000;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +80,7 @@ $(function () {
             var dt = data.timestamp.toLocaleString().split(', ')
             data.date = dt[0]
             data.time = dt[1].slice(0, -6) + dt[1].slice(-3)
-            duration = this.duration()
+            duration = this._hour_format(this.duration())
             data.duration = ""
             if (duration) {
                 if (duration[1] < 10) {
@@ -96,12 +99,15 @@ $(function () {
                 return
             }
             var msec = this.next().get('timestamp') - this.get('timestamp')
-            var hh = Math.floor(msec / 1000 / 60 / 60);
-            msec -= hh * 1000 * 60 * 60;
-            var mm = Math.floor(msec / 1000 / 60);
-            msec -= mm * 1000 * 60;
-            var ss = Math.floor(msec / 1000);
-            msec -= ss * 1000;
+            var minutes = Math.floor(msec / 1000 / 60);
+            return minutes
+        },
+        _hour_format: function (minutes) {
+            if (minutes === undefined) {
+                return
+            }
+            var hh = Math.floor(minutes / 60);
+            mm = minutes % 60;
             return [hh, mm]
         }
     })
@@ -128,8 +134,14 @@ $(function () {
             this.$el.attr('title', template_data.date)
             this.$el.addClass(template_data.startstop)
             return this
+        },
+        events: {
+            'click': 'toggle'
+        },
+        toggle: function () {
+            this.model.selected = this.model.selected ? false:true
+            this.$el.toggleClass('selected')
         }
-
     })
 
     var AppView = Backbone.View.extend({
@@ -155,6 +167,9 @@ $(function () {
             var what = $('#what')
             var what_val = what.val()
             var now = new Date()
+            // Only store date to the minute
+            now.setSeconds(0)
+            now.setMilliseconds(0)
             // 1-2 digits followed by optional :1-2 digits
             // followed by optional space then optional am/pm
             // ending with optional space. Case insensitive.
@@ -210,13 +225,23 @@ $(function () {
             this.collection_filter = _.bind(function (n) { return this.date_format(n.get('timestamp')) === this.date_format(new Date())}, this)
             this.resetNotes()
         },
+        worked: function () {
+            var total = 0
+            _.each(this.collection.filter(this.collection_filter), function (n) {
+                if (n.get('startstop') == 'start') {
+                    total += n.duration()
+                }
+            })
+            return total
+            // Sums: worked today, worked yesterday, worked on a date
+            // work that's selected
+        },
         date_format: function (date) {
             // yyyy-mm-dd
             return date.toISOString().slice(0,10)
         },
-
-
-        render: function () {},
+        render: function () {
+        }
     })
 
     var appRouter = Backbone.Router.extend({
