@@ -186,7 +186,7 @@ $(function () {
                         if (hours >= 12 && manual_hours < 6) {
                             manual_hours += 12
                         }
-                    } else if (results[3].toUpperCase() === 'PM') {
+                    } else if (results[3].toUpperCase() === 'PM' && manual_hours != 12) {
                             manual_hours += 12
                     }
                     what_val = what_val.slice(results[0].length)
