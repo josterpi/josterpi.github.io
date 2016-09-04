@@ -3,13 +3,20 @@ layout: bare
 ---
 <head>
     <title>Timelog</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"a></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     <script src="backbone.localStorage-min.js"></script>
     <style>
+        body {
+            font-family: arial, helvetica, sans-serif;
+            font-size: 16px;
+        }
         #what {
             width: 100%;
+            height: 2em;
+            font-size: 1.5em;
             margin-bottom: 1em;
         }
         #start, #stop {
@@ -20,6 +27,7 @@ layout: bare
             background-color: #ccf;
             text-align: center;
             vertical-align: center;
+            text-decoration: none;
         }
         .stop {
             color: #800;
