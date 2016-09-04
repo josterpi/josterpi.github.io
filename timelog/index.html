@@ -21,13 +21,16 @@ layout: bare
         }
         #start, #stop {
             display: inline-block;
-            width: 8em;
+            width: 7em;
             padding: 1em 0;
-            margin-right: 2em;
+            margin-right: 1em;
             background-color: #ccf;
             text-align: center;
             vertical-align: center;
             text-decoration: none;
+        }
+        #dates {
+            margin-top: 1em;
         }
         .stop {
             color: #800;
@@ -35,8 +38,8 @@ layout: bare
         .duration {
             color: #aaa
         }
-        .selected .duration {
-            color: #000;
+        .selected {
+            background-color: #eee;
         }
     </style>
 </head>
@@ -49,14 +52,14 @@ layout: bare
 
     </form>
     <div id="dates">
-        <!-- <a class="js-date-prev" href="">&lt;</a><span> Today </span><a class="js-date-next" href="">&gt;</a> -->
+        <a class="js-date-prev" href="#">&lt;</a><span> <a href="#today">Today</a> </span><a class="js-date-next" href="#">&gt;</a>
     </div>
     <ul id="history">
     </ul>
         <a href="#" id="clear">Clear record</a>
     </div>
     <script type="text/template" id="note-tmpl">
-<li><%= time %> - <%= note %> <span class="duration"><%= duration %></span></li>
+<%= time %> - <%= note %> <span class="duration"><%= duration %></span>
     </script>
 <script>
 $(function () {
@@ -65,73 +68,116 @@ $(function () {
             var ts = value.get('timestamp')
             return as.getDate() === ts.getDate() && as.getMonth() === ts.getMonth() && as.getYear() === ts.getYear()
     }}
-    var Note = Backbone.Model.extend({
-        localStorage: new Backbone.LocalStorage("bb-history"),
-        defaults: {
-            timestamp: null,
-            startstop: 'start',
-            note: ''
-        },
-        initialize: function() {
-            if (this.get('timestamp') === null) {
-                var now = new Date(Date.now())
-                this.set('timestamp', now)
-            }
-        },
-        parse: function(response, options) {
-            response.timestamp = new Date(response.timestamp)
-            return response
-        },
-        template_data: function() {
-            var data = this.toJSON()
-            var d, t
-            var dt = data.timestamp.toLocaleString().split(', ')
-            data.date = dt[0]
-            data.time = dt[1].slice(0, -6) + dt[1].slice(-3)
-            duration = this._hour_format(this.duration())
-            data.duration = ""
-            if (duration) {
-                if (duration[1] < 10) {
-                    duration[1] = '0' + duration[1]
-                }
-                data.duration = duration[0] + ':' + duration[1]
-            }
-            return data
-        },
-        next: function() {
-            return this.collection.at(this.collection.indexOf(this)+1)
-        },
-        duration: function () {
-            var next = this.next()
-            if (!next) {
-                return
-            }
-            var msec = this.next().get('timestamp') - this.get('timestamp')
-            var minutes = Math.floor(msec / 1000 / 60);
-            return minutes
-        },
-        _hour_format: function (minutes) {
-            if (minutes === undefined) {
-                return
-            }
-            var hh = Math.floor(minutes / 60);
-            mm = minutes % 60;
-            return [hh, mm]
+    var date_format = function (date) {
+        // yyyy-mm-dd
+        return date.getFullYear() + '-'
+            + ('0' + (date.getMonth()+1)).slice(-2) + '-'
+            + ('0' + date.getDate()).slice(-2)
+    }
+var Note = Backbone.Model.extend({
+    localStorage: new Backbone.LocalStorage("bb-history"),
+    defaults: {
+        timestamp: null,
+        startstop: 'start',
+        note: ''
+    },
+    initialize: function() {
+        if (this.get('timestamp') === null) {
+            var now = new Date(Date.now())
+            this.set('timestamp', now)
         }
-    })
+    },
+    parse: function(response, options) {
+        response.timestamp = new Date(response.timestamp)
+        return response
+    },
+    template_data: function() {
+        var data = this.toJSON()
+        var dt = [data.timestamp.getHours(), data.timestamp.getMinutes()]
+        dt[1] = ('0' + dt[1]).slice(-2)
+        if (dt[0] > 12) {
+            data.time = dt[0] - 12 + ":" + dt[1] + " PM"
+        } else {
+            data.time = dt[0] + ":" + dt[1] + " AM"
+        }
+        data.date = data.timestamp.getMonth() + 1 + "/" + data.timestamp.getDate() + "/" + data.timestamp.getFullYear()
+        duration = this._hour_format(this.duration())
+        data.duration = ""
+        if (duration) {
+            if (duration[1] < 10) {
+                duration[1] = '0' + duration[1]
+            }
+            data.duration = duration[0] + ':' + duration[1]
+        }
+        return data
+    },
+    next: function() {
+        return this.collection.at(this.collection.indexOf(this)+1)
+    },
+    duration: function () {
+        var next = this.next()
+        if (!next) {
+            return
+        }
+        var msec = this.next().get('timestamp') - this.get('timestamp')
+        var minutes = Math.floor(msec / 1000 / 60);
+        return minutes
+    },
+    _hour_format: function (minutes) {
+        if (minutes === undefined) {
+            return
+        }
+        var hh = Math.floor(minutes / 60);
+        mm = minutes % 60;
+        return [hh, mm]
+    }
+})
 
-    var NoteCollection = Backbone.Collection.extend({
-        model: Note,
-        comparator: 'timestamp',
-        localStorage: new Backbone.LocalStorage("bb-history"),
-        initialize: function() {
-            this.listenTo(this, 'sort', this.processAdd)
-        },
-        processAdd: function(collection) {
-            // reset collection in case resorting needs to happen
-            this.trigger('reset', collection)
+var NoteCollection = Backbone.Collection.extend({
+    model: Note,
+    comparator: 'timestamp',
+    localStorage: new Backbone.LocalStorage("bb-history"),
+    initialize: function() {
+        this.listenTo(this, 'sort', this.processAdd)
+    },
+    processAdd: function(collection) {
+        // reset collection in case resorting needs to happen
+        this.trigger('reset', collection)
+    },
+    getDates: function(including) {
+        var collector = {}
+        var result = []
+        this.each(function (note) {
+            var val = date_format(note.get("timestamp"))
+            if (!_.has(collector, val)) {
+                collector[val] = true
+                result.push(val)
+            }
+        })
+        if (!_.has(collector, including)) {
+            result.push(including)
         }
-    })
+        return result.sort()
+    },
+    previousDate: function(date) {
+        return this.nextPrev(date)[0]
+    },
+    nextDate: function(date) {
+        return this.nextPrev(date)[1]
+    },
+    nextPrev: function(date) {
+        var all_dates = this.getDates(date)
+        var i = all_dates.indexOf(date)
+        // TODO What if it can't find it?
+        // TODO what if it's the earliest already?
+        if (i === 0) {
+            return ["", ""]
+        } else {
+            return [all_dates[i - 1], all_dates[i + 1]]
+        }
+    }
+
+})
 
     var NoteView = Backbone.View.extend({
         tagName: 'li',
@@ -159,6 +205,8 @@ $(function () {
             'click #start': 'createStart',
             'click #stop': 'createStop',
             'click #clear': 'clear',
+            'click .js-date-prev': 'prev',
+            'click .js-date-next': 'next',
             'submit': 'createStart'
         },
         createStart: function(ev) {
@@ -209,10 +257,39 @@ $(function () {
             while ( (model = this.collection.shift()) ) { model.destroy() }
             this.collection.trigger('reset')
         },
+        prev: function(ev) {
+            this.nextPrev(ev, true)
+        },
+        next: function(ev) {
+            this.nextPrev(ev)
+        },
+        nextPrev: function(ev, prev) {
+            prev = prev || false
+            ev.preventDefault()
+            // If showing all history, we'll figure that out later
+            // If on #today, use new Date() for date
+            // If on #history, grab the date from the url
+            if (this.page.id === 'today') {
+                var current_date = this.date_format(new Date())
+            } else if (this.page.id === 'history') {
+                var current_date = this.page.date
+            } else {
+                // Default behavior is same as today
+                var current_date = this.date_format(new Date())
+            }
+            if (prev) {
+                var to = this.collection.previousDate(current_date)
+            } else {
+                var to = this.collection.nextDate(current_date)
+            }
+            // TODO check for errors
+            router.navigate("history/" + to, {trigger: true})
+        },
         initialize: function () {
             this.$list = this.$('#history')
             this.listenTo(this.collection, 'add', this.addNote)
             this.listenTo(this.collection, 'reset', this.resetNotes)
+            this.page = {id: '', date: ''}
             this.collection_filter = function (n) { return true }
             this.collection.fetch({reset: true})
         },
@@ -226,10 +303,12 @@ $(function () {
             // this.collection.filter(this.addNote, this)
         },
         history: function (date) {
+            this.page = {id: 'history', date: date}
             this.collection_filter = _.bind(function (n) { return this.date_format(n.get('timestamp')) === date}, this)
             this.resetNotes()
         },
         today: function () {
+            this.page = {id: 'today', date: ''}
             this.collection_filter = _.bind(function (n) { return this.date_format(n.get('timestamp')) === this.date_format(new Date())}, this)
             this.resetNotes()
         },
