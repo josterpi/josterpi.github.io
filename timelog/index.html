@@ -170,11 +170,18 @@ var NoteCollection = Backbone.Collection.extend({
         var i = all_dates.indexOf(date)
         // TODO What if it can't find it?
         // TODO what if it's the earliest already?
+        var p, n
         if (i === 0) {
-            return ["", ""]
+            p = ""
         } else {
-            return [all_dates[i - 1], all_dates[i + 1]]
+            p = all_dates[i - 1]
         }
+        if (i === all_dates.length - 1) {
+            n = ""
+        } else {
+            n = all_dates[i + 1]
+        }
+        return [p, n]
     }
 
 })
@@ -283,7 +290,9 @@ var NoteCollection = Backbone.Collection.extend({
                 var to = this.collection.nextDate(current_date)
             }
             // TODO check for errors
-            router.navigate("history/" + to, {trigger: true})
+            if (to) {
+                router.navigate("history/" + to, {trigger: true})
+            }
         },
         initialize: function () {
             this.$list = this.$('#history')
@@ -299,7 +308,10 @@ var NoteCollection = Backbone.Collection.extend({
         },
         resetNotes: function() {
             this.$list.html('')
-            _.each(this.collection.filter(this.collection_filter), _.bind(function (note) { this.addNote(note) }, this))
+            _.each(this.collection.filter(this.collection_filter), _.bind(function (note) {
+                this.addNote(note)
+
+            }, this))
             // this.collection.filter(this.addNote, this)
         },
         history: function (date) {
