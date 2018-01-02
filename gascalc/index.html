@@ -1,0 +1,80 @@
+---
+layout: bare
+---
+<html>
+    <head>
+        <title>Gas Calculator</title>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+<style>
+label {
+    display: inline-block;
+    width: 5.5em;
+}
+input {
+    width: 4em;
+}
+a {
+    padding-left: 10px;
+    text-decoration: none;
+}
+a:visited {
+    color: blue;
+}
+p {
+    margin-bottom: 2em;
+}
+.solved {
+    background-color: #f29898;
+}
+
+</style>
+        <script>
+function $(id) {
+    return document.getElementById(id);
+}
+function get_values() {
+    var values = {
+        mpg: $("mpg").value,
+        price: $("price").value,
+        miles: $("miles").value,
+        total: $("total").value
+    };
+    return values;
+}
+function highlight(anchor) {
+    $("mpg").className = "";
+    $("price").className = "";
+    $("miles").className = "";
+    $("total").className = "";
+    $(anchor).className = "solved";
+}
+function solve(for_id, formula) {
+    return function() {
+        var result = $(for_id);
+        var v = get_values();
+        result.value = formula(v);
+        highlight(for_id);
+        return false
+    }
+}
+total = solve("total", function(v) { return v.miles / v.mpg * v.price });
+miles = solve("miles", function(v) { return v.total * v.mpg / v.price });
+price = solve("price", function(v) { return v.total * v.mpg / v.miles });
+mpg = solve("mpg", function(v) { return v.miles * v.price / v.total });
+
+window.onload = function() {
+    $("solve-total").onclick = total;
+    $("solve-miles").onclick = miles;
+    $("solve-price").onclick = price;
+    $("solve-mpg").onclick = mpg;
+};
+        </script>
+    </head>
+    <body>
+        <p><label for="mpg">MPG:</label><input type="number" name="mpg" id="mpg"><a href="#mpg" id="solve-mpg">Solve for MPG</a></p>
+        <p><label for="price">Price of gas:</label><input type="number" name="price" id="price"><a href="#price" id="solve-price">Solve for price of gas</a></p>
+        <p><label for="miles">Miles:</label><input type="number" name="miles" id="miles"><a href="#miles" id="solve-miles">Solve for miles</a></p>
+        <p><label for="total">Total cost:</label><input type="number" name="total" id="total"><a href="#total" id="solve-total">Solve for total cost</a></p>
+    </body>
+</html>
+
