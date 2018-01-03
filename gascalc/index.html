@@ -56,7 +56,9 @@ function solve(for_id, formula) {
     return function() {
         var result = $(for_id);
         var v = get_values();
-        result.value = formula(v);
+        result.value = Math.round(formula(v) * 100) / 100;
+        if (for_id === "price" || for_id === "total")
+            result.value = Number.parseFloat(result.value).toFixed(2)
         highlight(for_id);
         return false
     }
