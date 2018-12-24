@@ -5,24 +5,26 @@ layout: bare
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Christmas Carols</title>
     <!--TODO
-	verse numbers
-	expand/contract carols
-	size adjustment
-	style
 	add sheet music
       -->
     <style>
       body {
           font-family: arial, helvetica, sans-serif;
       }
-      body.small p {
+      body.small li, #small {
           font-size: 16px;
       }
-      body.medium p {
+      body.medium li, #medium {
 	  font-size: 20px;
       }
-      body.large p, body.large li {
+      body.large li, #large {
 	  font-size: 24px;
+      }
+      #settings a {
+	  text-decoration: none;
+      }
+      #settings a.selected {
+	  color: #000;
       }
       body.dark {
 	  color: #ccc;
@@ -51,7 +53,7 @@ layout: bare
   <body class="">
     <h1>Christmas Carols</h1>
     <div id="settings">
-      <a href="#" id="small">Small</a>
+      <a href="#" id="small" class="selected">Small</a>
       <a href="#" id="medium">Medium</a>
       <a href="#" id="large">Large</a>
     </div>
@@ -67,14 +69,6 @@ layout: bare
       
       var hide = function (x) { x.style.display = 'none' }
       
-      var toggle = function (x) {
-	  if (x.style.display === 'none') {
-	      x.style.display = ''
-	  } else {
-	      x.style.display = 'none'
-	  }
-      }
-
       document.querySelectorAll("section>h1").forEach(function (value) {
 	  hide(value.closest('section').querySelector('ol'))
 	  value.addEventListener("click", function () {
@@ -82,7 +76,13 @@ layout: bare
 	      
 	      document.querySelectorAll("section").forEach(function (section) {
 		  if (section === this_section) {
-		      toggle(section.querySelector('ol'))
+		      var lyrics = section.querySelector('ol')
+		      if (lyrics.style.display === 'none') {
+			  lyrics.style.display = ''
+			  section.scrollIntoView()
+		      } else {
+			  lyrics.style.display = 'none'
+		      }
 		  } else {
 		      hide(section.querySelector('ol'))
 		  }
@@ -91,6 +91,10 @@ layout: bare
       })
       var sizer = function (size) {
 	  document.querySelector('#' + size).addEventListener("click", function (event) {
+	      document.querySelectorAll('#settings a').forEach(function (a) {
+		  a.className = ''
+	      })
+	      this.className = 'selected'
 	      document.querySelector('body').className = size
 	      event.preventDefault()
 	  })
@@ -100,6 +104,12 @@ layout: bare
       sizer('medium')
       sizer('large')
 	    
+    </script>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      _uacct = "UA-367442-1";
+      urchinTracker();
     </script>
   </body>
 

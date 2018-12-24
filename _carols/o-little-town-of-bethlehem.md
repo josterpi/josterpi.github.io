@@ -8,7 +8,7 @@ The silent stars go by.
 Yet in thy dark streets shineth  
 The everlasting Light;  
 The hopes and fears of all the years  
-Are met in thee to-night.  
+Are met in thee tonight.  
 
 2. O morning stars, together  
 Proclaim the holy birth!  
@@ -40,7 +40,7 @@ And Christmas comes once more.
 5. O holy Child of Bethlehem,  
 Descend to us, we pray!  
 Cast out our sin and enter in,  
-Be born in us to-day.  
+Be born in us today.  
 We hear the Christmas angels,  
 The great glad tidings tell;  
 O come to us, abide with us,  
