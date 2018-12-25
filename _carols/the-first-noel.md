@@ -1,8 +1,8 @@
 ---
 title: The First Nowell
 ---
-1. The first Nowell the Angel did say  
-Was to three poor Shepherds in fields as they lay.  
+1. The first Nowell, the Angel did say  
+Was to certain poor Shepherds in fields as they lay.  
 In fields where they lay keeping their sheep,  
 In a cold winter's night that was so deep.  
 Nowell, nowell, nowell, nowell,  
@@ -36,9 +36,9 @@ And found the babe in poverty.
 Nowell, nowell, nowell, nowell,  
 Born is the King of Israel.  
 
-6. Then enter'd in those wise men three,  
+6. Then entered in those wise men three,  
 Full reverently upon their knee,  
-And offer'd there, in his presence,  
+And offered there, in his presence,  
 Their gold, and myrrh, and frankincense.  
 Nowell, nowell, nowell, nowell,  
 Born is the King of Israel.  

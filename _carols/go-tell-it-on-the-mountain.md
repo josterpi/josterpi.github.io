@@ -5,7 +5,8 @@ title: Go, Tell It On The Mountain
 O'er silent flocks by night,  
 Behold throughout the heavens  
 There shone a holy light  
-Go, tell it on the mountain  
+
+   Go, tell it on the mountain  
 Over the hills and everywhere  
 Go, tell it on the mountain  
 That Jesus Christ is born.  
@@ -14,7 +15,8 @@ That Jesus Christ is born.
 When lo above the earth  
 Rang out the angel chorus  
 That hailed our Savior's birth;  
-Go, tell it on the mountain    
+
+   Go, tell it on the mountain  
 Over the hills and everywhere  
 Go, tell it on the mountain  
 That Jesus Christ is born.  
@@ -23,7 +25,8 @@ That Jesus Christ is born.
 The humble Christ was born;  
 And God sent out salvation  
 That blessed Christmas morn.  
-Go, tell it on the mountain  
+
+   Go, tell it on the mountain  
 Over the hills and everywhere  
 Go, tell it on the mountain  
 That Jesus Christ is born.  
@@ -32,16 +35,18 @@ That Jesus Christ is born.
 I sought both night and day  
 I sought the Lord to help me  
 And He showed me the way.  
-Go, tell it on the mountain  
+
+   Go, tell it on the mountain  
 Over the hills and everywhere  
 Go, tell it on the mountain  
-That Jesus Christ is born.  
+That Jesus Christ is born.
 
 5. He made me a watchman  
 Upon the city wall  
 And If I am a Christian  
-I am the least of all.  
-Go, tell it on the mountain  
+I am the least of all.
+
+   Go, tell it on the mountain  
 Over the hills and everywhere  
 Go, tell it on the mountain  
 That Jesus Christ is born.  
