@@ -1,6 +1,11 @@
 ---
 title: Go, Tell It On The Mountain
 ---
+Go, tell it on the mountain  
+Over the hills and everywhere  
+Go, tell it on the mountain  
+That Jesus Christ is born.
+
 1. While shepherds kept their watching  
 O'er silent flocks by night,  
 Behold throughout the heavens  

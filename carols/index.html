@@ -60,7 +60,9 @@ layout: bare
     {% for carol in site.carols %}
     <section>
       <h1>{{ carol.title }}</h1>
-      {{ carol.content|markdownify }}
+      <div class="lyrics">
+	{{ carol.content|markdownify }}
+      </div>
     </section>
     {% endfor %}
         
@@ -70,13 +72,13 @@ layout: bare
       var hide = function (x) { x.style.display = 'none' }
       
       document.querySelectorAll("section>h1").forEach(function (value) {
-	  hide(value.closest('section').querySelector('ol'))
+	  hide(value.closest('section').querySelector('.lyrics'))
 	  value.addEventListener("click", function () {
 	      var this_section = value.closest('section')
 	      
 	      document.querySelectorAll("section").forEach(function (section) {
 		  if (section === this_section) {
-		      var lyrics = section.querySelector('ol')
+		      var lyrics = section.querySelector('.lyrics')
 		      if (lyrics.style.display === 'none') {
 			  lyrics.style.display = ''
 			  section.scrollIntoView()
@@ -84,7 +86,7 @@ layout: bare
 			  lyrics.style.display = 'none'
 		      }
 		  } else {
-		      hide(section.querySelector('ol'))
+		      hide(section.querySelector('.lyrics'))
 		  }
 	      })
 	  })
