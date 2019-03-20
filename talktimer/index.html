@@ -1,0 +1,178 @@
+---
+layout: bare
+---
+  <head>
+    <title>Talk Timer</title>
+    <style>
+      body {
+	  height: 100vh;
+	  min-height: 100vh;
+      }
+      #timerBox {
+	  width: 65%;
+	  margin-left: auto;
+	  margin-right: auto;
+      }
+      svg {
+	  width: 100%;
+	  /*height: 75%;*/
+	  transform: rotate(-90deg);
+	  background: #aaa;
+	  border-radius: 50%;
+      }
+      circle {
+	  fill: #aaa;
+	  stroke: #000;
+	  stroke-width: 318;
+	  stroke-dasharray: 1000 1000;
+      }
+      polygon {
+	  fill: #090;
+      }
+      #end {
+	  color: #f55;
+	  font-family: sans-serif;
+	  width: 100%;
+	  text-align: center;
+	  display: none;
+      }
+      #end h1 {
+	  font-size: 15em;
+	  margin: 0em;
+	  
+      }
+      #end h2 {
+	  font-size: 10em;
+	  margin: -0.1em 0 0 0;
+      }
+      button {
+	  height: 3em;
+      }
+      #endButton {
+	  float: right;
+      }
+      #settings {
+	  position: fixed;
+	  color: #666;
+      }
+      #settings input {
+	  color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="settings">
+      <div>
+	Duration: <input type="text" name="duration" value="5"><br>
+	Wrap-up: <input type="text" name="wrapup" value="1"><br>
+	<!-- Update (ms): <input type="text" name="update"><br> -->
+      </div>
+    </div>
+    <div id="timerBox">
+      <svg viewBox="0 0 320 320">
+	<circle r="159" cx="159" cy="159" id="timer" />
+	<polygon points="160,180 180,150 140,150"
+      </svg>
+      <div id="end">
+	<h1>End</h1>
+	<h2>0:00</h2>
+      </div>
+    </div>
+    <button id="resetButton">Reset</button>
+    <button id="endButton">End</button>
+    <script>
+      // save those options in local history
+      // Add keypress for start
+      var $ = document.querySelector.bind(document)
+      var circle = document.getElementById("timer")
+      var ender = document.getElementById("end")
+      var end_timer = $("#end h2")
+
+      var total_time = 5 * 60
+      var elapsed_time = 0
+      var over_time = 0
+      var wrapup = 1 * 60
+      var update_time = 100 // ms
+      var start_time
+      var running = false
+
+      // Need a percentage to set to based on time elapsed from total time
+
+      var setDial = function(elapsed) {
+	  var percent = elapsed / total_time * 1000
+	  circle.style.strokeDasharray = percent + " 1000"
+	  if (elapsed > total_time - wrapup) {
+	      circle.style.stroke = "#f55"
+	  } else if (elapsed == 0) {
+	      circle.style.stroke = "#000"
+	  } else {
+	      circle.style.stroke = "#55f"
+	  }
+      }
+      function overtime() {
+	  if (!running) return
+	  $("svg").style.display = "none"
+	  ender.style.display = "block"
+	  var seconds = ('0' + (over_time % 60)).slice(-2)
+          var display = Math.floor(over_time/60) + ':' + seconds
+	  end_timer.innerHTML = display
+	  over_time += 1
+	  setTimeout(overtime, 1000)
+      }
+      
+      function countdown() {
+	  if (!running) return
+	  var now = new Date().getTime()
+	  elapsed_time = (now - start_time)/1000 // total - elapsed
+	  setDial(elapsed_time)
+	  if (elapsed_time < total_time)
+	      setTimeout(countdown, update_time)
+	  else {
+	      overtime()
+	  }
+      }
+      
+      function startstop() {
+	  if (!running) {
+	      running = true
+	      $("polygon").style.display = "none"
+	      start_time = new Date().getTime()
+	      // timestamps are in milliseconds and elapsed_time is in seconds
+	      if (elapsed_time) start_time = start_time - elapsed_time*1000
+	      setTimeout(countdown, update_time)
+	  } else {
+	      $("polygon").style.display = "block"
+	      running = false
+	  }
+      }
+
+      function reset() {
+	  running = false
+	  $("svg").style.display = "block"
+	  $("polygon").style.display = "block"
+	  ender.style.display = "none"
+	  elapsed_time = 0
+	  over_time = 0
+	  setDial(total_time)
+	  circle.style.stroke = "#000"
+      }
+
+      $("svg").onclick = startstop
+
+      document.getElementById("endButton").onclick = overtime
+      document.getElementById("resetButton").onclick = reset
+
+      $('input[name="duration"]').onchange = function () {
+	  total_time = parseFloat(this.value) * 60
+      }
+      $('input[name="wrapup"]').onchange = function () {
+	  wrapup = parseFloat(this.value) * 60
+      }
+      $('input[name="update"]').onchange = function () {
+	  update_time = parseFloat(this.value)
+      }
+	  
+      
+    </script>
+  </body>
+
