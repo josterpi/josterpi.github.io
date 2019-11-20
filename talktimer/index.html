@@ -88,20 +88,23 @@ layout: bare
       var ender = document.getElementById("end")
       var end_timer = $("#end h2")
 
-      var total_time = 5 * 60
-      var elapsed_time = 0
-      var over_time = 0
-      var wrapup = 1 * 60
       var update_time = 100 // ms
-      var start_time
-      var running = false
+
+      var state = {
+	  running: false,
+	  start_time: null,
+	  total_time: 5 * 60,
+	  wrapup: 1 * 60,
+	  over_time: 0,
+	  elapsed_time: 0
+      }
 
       // Need a percentage to set to based on time elapsed from total time
 
       var setDial = function(elapsed) {
-	  var percent = elapsed / total_time * 1000
+	  var percent = elapsed / state.total_time * 1000
 	  circle.style.strokeDasharray = percent + " 1000"
-	  if (elapsed > total_time - wrapup) {
+	  if (elapsed > state.total_time - state.wrapup) {
 	      circle.style.stroke = "#f55"
 	  } else if (elapsed == 0) {
 	      circle.style.stroke = "#000"
@@ -110,22 +113,23 @@ layout: bare
 	  }
       }
       function overtime() {
-	  if (!running) return
+	  if (!state.running) return
 	  $("svg").style.display = "none"
 	  ender.style.display = "block"
-	  var seconds = ('0' + (over_time % 60)).slice(-2)
-          var display = Math.floor(over_time/60) + ':' + seconds
+	  $("#endButton").disabled = true
+	  var seconds = ('0' + (state.over_time % 60)).slice(-2)
+          var display = Math.floor(state.over_time/60) + ':' + seconds
 	  end_timer.innerHTML = display
-	  over_time += 1
+	  state.over_time += 1
 	  setTimeout(overtime, 1000)
       }
       
       function countdown() {
-	  if (!running) return
+	  if (!state.running) return
 	  var now = new Date().getTime()
-	  elapsed_time = (now - start_time)/1000 // total - elapsed
-	  setDial(elapsed_time)
-	  if (elapsed_time < total_time)
+	  state.elapsed_time = (now - state.start_time)/1000
+	  setDial(state.elapsed_time)
+	  if (state.elapsed_time < state.total_time)
 	      setTimeout(countdown, update_time)
 	  else {
 	      overtime()
@@ -133,46 +137,44 @@ layout: bare
       }
       
       function startstop() {
-	  if (!running) {
-	      running = true
+	  if (!state.running) {
+	      state.running = true
 	      $("polygon").style.display = "none"
-	      start_time = new Date().getTime()
+	      state.start_time = new Date().getTime()
 	      // timestamps are in milliseconds and elapsed_time is in seconds
-	      if (elapsed_time) start_time = start_time - elapsed_time*1000
+	      if (state.elapsed_time) state.start_time -= state.elapsed_time*1000
 	      setTimeout(countdown, update_time)
 	  } else {
 	      $("polygon").style.display = "block"
-	      running = false
+	      state.running = false
 	  }
       }
 
       function reset() {
-	  running = false
+	  state.running = false
 	  $("svg").style.display = "block"
 	  $("polygon").style.display = "block"
 	  ender.style.display = "none"
-	  elapsed_time = 0
-	  over_time = 0
-	  setDial(total_time)
+	  $("#endButton").disabled = false
+	  state.elapsed_time = 0
+	  state.over_time = 0
+	  setDial(state.total_time)
 	  circle.style.stroke = "#000"
       }
 
       $("svg").onclick = startstop
 
+      // FIXME when paused, allow End button to work
       document.getElementById("endButton").onclick = overtime
       document.getElementById("resetButton").onclick = reset
 
       $('input[name="duration"]').onchange = function () {
-	  total_time = parseFloat(this.value) * 60
+	  state.total_time = parseFloat(this.value) * 60
       }
       $('input[name="wrapup"]').onchange = function () {
-	  wrapup = parseFloat(this.value) * 60
+	  state.wrapup = parseFloat(this.value) * 60
       }
-      $('input[name="update"]').onchange = function () {
-	  update_time = parseFloat(this.value)
-      }
-	  
-      
+            
     </script>
   </body>
 
