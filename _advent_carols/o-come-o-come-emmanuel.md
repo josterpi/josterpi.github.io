@@ -3,7 +3,7 @@ title: O Come, O Come, Emmanuel
 ---
 1. O come, O come, Emmanuel,  
 And ransom captive Israel,  
-That mourns in lonely exile here
+That mourns in lonely exile here  
 Until the Son of God appear.  
 Rejoice! Rejoice! Emmanuel  
 Shall come to thee, O Israel.
