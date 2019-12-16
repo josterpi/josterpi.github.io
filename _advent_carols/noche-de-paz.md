@@ -1,30 +1,31 @@
+
 ---
 title: Noche de paz
 ---
 1. Noche de paz, noche de amor,  
 Todo duerme en derredor.  
 Entre sus astros que esparcen su luz  
-Bella anunciando al niñito Jesús  
+Bella anunciando al niÃ±ito JesÃºs  
 Brilla la estrella de paz  
 Brilla la estrella de paz
 
 2. Noche de paz, noche de amor,  
 Todo duerme en derredor  
-Sólo velan en la oscuridad  
-Los pastores que en el campo están;  
-Y la estrella de Belén  
-Y la estrella de Belén
+SÃ³lo velan en la oscuridad  
+Los pastores que en el campo estÃ¡n;  
+Y la estrella de BelÃ©n  
+Y la estrella de BelÃ©n
 
 3. Noche de paz, noche de amor,  
 Todo duerme en derredor;  
-sobre el santo niño Jesús  
+sobre el santo niÃ±o JesÃºs  
 Una estrella esparce su luz,  
 Brilla sobre el Rey  
 Brilla sobre el Rey.
 
 4. Noche de paz, noche de amor,  
 Todo duerme en derredor  
-Fieles velando allí en Belén  
-Los pastores, la madre también.  
+Fieles velando allÃ­ en BelÃ©n  
+Los pastores, la madre tambiÃ©n.  
 Y la estrella de paz  
 Y la estrella de paz

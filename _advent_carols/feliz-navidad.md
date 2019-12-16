@@ -4,11 +4,11 @@ title: Feliz Navidad
 1. Feliz Navidad  
 Feliz Navidad  
 Feliz Navidad  
-Próspero año y felicidad  
+PrÃ³spero aÃ±o y felicidad  
 Feliz Navidad  
 Feliz Navidad  
 Feliz Navidad  
-Próspero año y felicidad
+PrÃ³spero aÃ±o y felicidad
 
 2. I want to wish you a Merry Christmas  
 I want to wish you a Merry Christmas  
