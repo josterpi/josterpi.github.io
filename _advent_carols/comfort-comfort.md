@@ -1,38 +1,29 @@
 ---
-title: Comfort, Comfort ye my People
+title: Comfort, Comfort now my People
 ---
-1. Comfort, comfort ye my people,  
-speak ye peace, thus saith our God;  
-comfort those who sit in darkness,  
-mourning 'neath their sorrow's load.  
-Speak ye to Jerusalem  
-of the peace that waits for them;  
-tell her that her sins I cover,  
-and her warfare now is over.
+1. "Comfort, comfort now my people;  
+tell of peace!" so says our God.  
+Comfort those who sit in darkness  
+mourning under sorrow's load.  
+To God's people now proclaim  
+that God's pardon waits for them!  
+Tell them that their war is over;  
+God will reign in peace forever!
 
-2. Yea, her sins our God will pardon,  
-blotting out each dark misdeed;  
-all that well deserved his anger  
-he no more will see or heed.  
-She hath suffered many a day,  
-now her griefs have passed away;  
-God will change her pining sadness  
-into ever-springing gladness.
-
-3. For the herald's voice is crying  
+2. For the herald's voice is crying  
 in the desert far and near,  
-bidding all men to repentance,  
-since the kingdom now is here.  
-O that warning cry obey!  
-Now prepare for God a way;  
-let the valleys rise to meet him,  
-and the hills bow down to greet him.
+calling us to true repentance  
+since the Kingdom now is here.  
+Oh, that warning cry obey!  
+Now prepare for God a way!  
+Let the valleys rise to meet him,  
+and the hills bow down to greet him!
 
-4. Make ye straight what long was crooked,  
-make the rougher places plain;  
-let your hearts be true and humble,  
-as befits his holy reign.  
+3. Straight shall be what long was crooked,  
+and the rougher places plain!  
+Let your hearts be true and humble,  
+as befits his holy reign!  
 For the glory of the Lord  
-now o'er earth is shed abroad;  
-and all flesh shall see the token,  
-that his word is never broken.
+now on earth is shed abroad,  
+and all flesh shall see the token  
+that God's word is never broken.
