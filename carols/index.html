@@ -28,8 +28,18 @@ layout: bare
       #settings a {
 	  text-decoration: none;
       }
+      a {
+	  text-decoration: none;
+      }
       #settings a.selected {
 	  color: #000;
+      }
+      #share {
+	  float: right;
+      }
+      #share img {
+	  vertical-align: middle;
+	  height: 2em;
       }
       body.dark {
 	  color: #ccc;
@@ -55,7 +65,8 @@ layout: bare
       }
     </style>
   </head>
-  <body class="">
+<body class="">
+  <div id="share"><a href="qr.html">Share:<img src="carols-qr.png"></a></div>
     <h1>Christmas Carols</h1>
     <div id="settings">
       <a href="#" id="small" class="selected">Small</a>
