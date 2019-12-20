@@ -1,4 +1,3 @@
-
 ---
 title: Noche de paz
 ---
