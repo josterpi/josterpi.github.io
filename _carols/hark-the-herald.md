@@ -23,14 +23,14 @@ Jesus, our Emmanuel!
 Hark! the herald angels sing  
 Glory to the new-born King!  
 
-3. Mild He lays His glory by,  
+3. Hail, the heaven-born Prince of Peace!  
+Hail, the Son of Righteousness!  
+Light and life to all He brings,  
+Risen with healing in His wings,  
+Mild He lays His glory by,  
 Born that man no more may die,  
 Born to raise the sons of earth,  
 Born to give them second birth.  
-Risen with healing in His wings,  
-Light and life to all He brings,  
-Hail, the Son of Righteousness!  
-Hail, the heaven-born Prince of Peace!  
 Hark! the herald angels sing  
 Glory to the new-born King!  
 

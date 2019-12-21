@@ -22,7 +22,7 @@ Proclaimed by angels bright,
 How Christ, the Lord of Glory  
 Was born on earth this night.  
 To Bethlehem they sped  
-And in the manger they found Him,  
+And in the manger found Him,  
 As angels heralds said.  
 
 4. This Flower, whose fragrance tender  
