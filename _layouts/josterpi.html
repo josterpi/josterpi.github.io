@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head><title>{{ title }}</title>
-<link rel="stylesheet" type="text/css" href="layout.css" />
-<meta name="verify-v1" content="kg4E+n+MJvo9gOP3rQ2sefD+yoWWv3Vk3xQ2CoRuhBs=" />
-<meta charset='utf-8'/>
-</head>
-<body>
-<h1>Jeremy Osterhouse's home page</h1>
-<div id="content">
-{{ content }}
-</div>
-<div id="footer">
-	&copy; 2006-2015 Jeremy Osterhouse<br>
-    Last updated: {{ page.last_updated }}
-</div>
-{% include tracking.html %}
-</body>
+  <head><title>{{ title }}</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="layout.css" />
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="verify-v1" content="kg4E+n+MJvo9gOP3rQ2sefD+yoWWv3Vk3xQ2CoRuhBs=" />
+    <meta charset='utf-8'/>
+  </head>
+  <body>
+    <header>
+      <img src="/media/josterpi-bw-circle.jpg">
+      <h1>Jeremy Osterhouse</h1>
+    </header>
+    <div id="content">
+      {{ content }}
+    </div>
+    <div id="footer">
+      &copy; 2006-2020 Jeremy Osterhouse<br>
+      Last updated: {{ page.last_updated }}
+    </div>
+    {% include tracking.html %}
+  </body>
 </html>

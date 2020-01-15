@@ -1,23 +1,20 @@
 ---
 layout: josterpi
-title: Jeremy Osterhouse's home page v0.2
-last_updated: 12/24/2018
+title: Jeremy Osterhouse
+last_updated: 1/15/2020
 ---
-Figured it was time to make a web site. Here it is. Lots of work to do on it.
-
-**A work in progress...**
 
 ### About me
 
- - [I'm getting married to Anne Swan!](http://anne-jeremy.osterhouse.org/)
- - Here is my [resume](/resume.pdf)
+  - Here is my [resume](/resume.pdf)
  - [One:Ten profile](http://onetencommunications.com/about/#jeremy-osterhouse)
 
 ### Where I am
 
+- <a rel="me" href="https://github.com/josterpi/">Github</a>
+- <a rel="me" href="https://www.facebook.com/jeremy.osterhouse">Facebook</a>
 - <a rel="me" href="http://flickr.com/photos/josterpi/">Flickr</a>
 - <a rel="me" href="http://twitter.com/josterpi">Twitter</a>
-- <a rel="me" href="https://github.com/josterpi/">Github</a>
 
 ### Small Websites
 
@@ -38,7 +35,6 @@ Figured it was time to make a web site. Here it is. Lots of work to do on it.
  - I put together <a href="http://www.citybuilder.org">www.citybuilder.org</a> using Drupal for the People of Praise and one:ten.
  - Spring of 2004 I put together <a href="/webtech.html">this</a> introduction to the web development. It kind of trailed off as I ran out of time.
  - You can contact me at josterhouse@gmail.com
- - To Do: Add more content, make it look good, ...
 
 This quote from Fred P. Brooks essay "The Tar Pit" is the closest I've found to summing up why I love computer science:
 
