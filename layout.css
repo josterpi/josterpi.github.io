@@ -21,23 +21,22 @@
 }
 
 html { 
-	padding:0px;
-	margin:0px;
+    padding:0px;
+    margin:0px;
 }
 
-
 body {
-	background-color: #ffffff;
-	/*font-size: 12px;*/
-	font-family: 'Lora', Verdana, Arial, SunSans-Regular, Sans-Serif;
-	color:#000000;  
-	padding:0px;
-	margin:0px;
+    background-color: #ffffff;
+    font-family: 'Lora', Verdana, Arial, SunSans-Regular, Sans-Serif;
+    color:#000000;  
+    padding:0px;
+    margin:0px;
 }
 
 header {
     display: grid;
     grid-template-columns: 120px auto;
+    align-items: center;
     padding: 15px 20px;
     border-bottom: 3px solid #6f79ae;
 }
@@ -49,18 +48,23 @@ header img {
 h1 {
     grid-column-start: 2;
     font-size: 2.5em;
-    line-height: 100px;
+    line-height: 1.25em;
     margin: 0;
 }
+
+h3 {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 header div {
     grid-column-start: 2;
 }
 
-
 a:visited {
-	color: purple;
-	text-decoration: none;
+    color: purple;
+    text-decoration: none;
 }
+
 a {
     text-decoration: none;
 }
@@ -70,39 +74,36 @@ a:hover {
 }
 
 #content {
-	/*margin: 0px 190px 0px 190px;
-	border-left: 2px solid #564b47;
-	border-right: 2px solid #564b47;*/
-	margin-right: 20px;
-	margin-left: 20px;
-	max-width: 800px;
-	padding: 0px;
-	background-color: #ffffff;    
+    margin-right: 20px;
+    margin-left: 20px;
+    max-width: 800px;
+    padding: 0px;
+    background-color: #ffffff;    
 }
 
 #left {
-	position: absolute;
-	left: 0px;
-	width: 190px;
-	color: #564b47;
-	margin: 0px; 
-	padding: 0px;
+    position: absolute;
+    left: 0px;
+    width: 190px;
+    color: #564b47;
+    margin: 0px; 
+    padding: 0px;
 }
 
 #right {
-	position: absolute;
-	right: 0px;        
-	width: 190px;
-	color: #564b47;
-	margin: 0px; 
-	padding: 0px;
+    position: absolute;
+    right: 0px;        
+    width: 190px;
+    color: #564b47;
+    margin: 0px; 
+    padding: 0px;
 }
 
 #footer {
-	margin-right: auto;
-	border-top: 1px solid black;
-	background-color: #ccc;
-	font-size: 0.8em;
-	margin-top: 40px;
-	text-align: center;
+    margin-right: auto;
+    border-top: 1px solid black;
+    background-color: #ccc;
+    font-size: 0.8em;
+    margin-top: 40px;
+    text-align: center;
 }
