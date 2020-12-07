@@ -21,7 +21,7 @@ last_updated: 1/15/2020
  - [Pomodoro timer](pomodoro/) is unlike any other online timer I've seen on the internet. It's not a digital countdown, blinking at me every second, but is more like an analog kitchen timer
  - [Time Log](timelog/) is a super low effort way to keep track of your time. It stores all of the data on your local computer, so there's no account needed and you have complete privacy
  - [GasCalc](gascalc/) is a minimalist gas cost calculator. Fill in three of MPG, price of gas, miles, and total cost and solve for the final variable.
- - [Christmas Carols](carols/) is a mobile-optimized Christmas carol songbook that has all of the carols that I want to sing in one place and skips the 75 carols that I'm not interested in.
+ - [Christmas Carols](carols/) is a mobile-optimized Christmas carol songbook that has all of the carols that I want to sing in one place and skips the 75 carols that I'm not interested in. [Advent Carols](carols/advent/) are also available.
 
 ### Other stuff
 
