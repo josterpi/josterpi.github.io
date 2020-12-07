@@ -18,4 +18,4 @@ Visual alarm at the end of the timer.
 
 Counts up after it expires.
 
-I run it like this: google-chrome --app=http://josterpi.com/pomodoro/
+I run it like this: google-chrome --app=https://josterpi.com/pomodoro/

@@ -7,14 +7,14 @@ last_updated: 1/15/2020
 ### About me
 
   - Here is my [resume](/resume.pdf)
- - [One:Ten profile](http://onetencommunications.com/about/#jeremy-osterhouse)
+ - [One:Ten profile](https://onetencommunications.com/about/#jeremy-osterhouse)
 
 ### Where I am
 
 - <a rel="me" href="https://github.com/josterpi/">Github</a>
 - <a rel="me" href="https://www.facebook.com/jeremy.osterhouse">Facebook</a>
-- <a rel="me" href="http://flickr.com/photos/josterpi/">Flickr</a>
-- <a rel="me" href="http://twitter.com/josterpi">Twitter</a>
+- <a rel="me" href="https://flickr.com/photos/josterpi/">Flickr</a>
+- <a rel="me" href="https://twitter.com/josterpi">Twitter</a>
 
 ### Small Websites
 
@@ -31,7 +31,7 @@ last_updated: 1/15/2020
  - I am presently spending a lot of time working with <a href="http://www.djangoproject.com">Django</a> and having a blast.
  - I worked on <a href="http://www.chipmark.com/">Chipmark</a> during the 2005-2006 school year
  - I've been working with <a href="http://www.drupal.org">Drupal</a> since 2004 and I know it pretty well. Most times, the code is a real pleasure to work with.
- - I developed <a href="http://www.peopleofpraise.org">www.peopleofpraise.org</a> using Drupal for the People of Praise.
+ - I developed <a href="https://www.peopleofpraise.org">www.peopleofpraise.org</a> using Drupal for the People of Praise.
  - I put together <a href="http://www.citybuilder.org">www.citybuilder.org</a> using Drupal for the People of Praise and one:ten.
  - Spring of 2004 I put together <a href="/webtech.html">this</a> introduction to the web development. It kind of trailed off as I ran out of time.
  - You can contact me at josterhouse@gmail.com

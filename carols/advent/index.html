@@ -33,7 +33,6 @@ layout: bare
       body.dark {
 	  color: #ccc;
 	  background-color: #000;
-		     
       }
       section h1 {
 	  background-color: #eee;
@@ -69,17 +68,17 @@ layout: bare
       </div>
     </section>
     {% endfor %}
-        
+
     <script>
       var show = function (x) { x.style.display = '' }
-      
+
       var hide = function (x) { x.style.display = 'none' }
-      
+
       document.querySelectorAll("section>h1").forEach(function (value) {
 	  hide(value.closest('section').querySelector('.lyrics'))
 	  value.addEventListener("click", function () {
 	      var this_section = value.closest('section')
-	      
+
 	      document.querySelectorAll("section").forEach(function (section) {
 		  if (section === this_section) {
 		      var lyrics = section.querySelector('.lyrics')
@@ -109,13 +108,8 @@ layout: bare
       sizer('small')
       sizer('medium')
       sizer('large')
-	    
+
     </script>
-    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-    </script>
-    <script type="text/javascript">
-      _uacct = "UA-367442-1";
-      urchinTracker();
-    </script>
+    {% include tracking.html %}
   </body>
 
