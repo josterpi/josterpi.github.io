@@ -1,0 +1,7 @@
+
+To run local jekyl:
+bundle exec jekyll serve
+
+To see docs, in a different directory:
+jekyll _3.9.0_ docs -P 4001
+
