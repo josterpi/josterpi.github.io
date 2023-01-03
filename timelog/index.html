@@ -261,6 +261,7 @@ var NoteCollection = Backbone.Collection.extend({
             what.val('')
         },
         clear: function() {
+            if (window.confirm("Are you sure you want to delete all records?") == false) return;
             while ( (model = this.collection.shift()) ) { model.destroy() }
             this.collection.trigger('reset')
         },
