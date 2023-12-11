@@ -1,4 +1,3 @@
-
 ---
 title: O Come, O Come, Emmanuel
 ---
