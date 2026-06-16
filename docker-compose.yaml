@@ -1,0 +1,15 @@
+# docker compose up
+# http://localhost:4000
+services:
+  jekyll:
+    image: jekyll/jekyll:4.2.2
+    command: jekyll serve --trace --watch --force_polling --livereload --drafts
+    ports:
+      - "4000:4000"
+      - "35729:35729"   # livereload port
+    volumes:
+      - .:/srv/jekyll
+      - bundle_cache:/usr/local/bundle   # cache gems between runs
+
+volumes:
+  bundle_cache:
