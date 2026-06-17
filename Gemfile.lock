@@ -76,6 +76,7 @@ GEM
     webrick (1.9.2)
 
 PLATFORMS
+  x86_64-linux-gnu
   x86_64-linux-musl
 
 DEPENDENCIES
