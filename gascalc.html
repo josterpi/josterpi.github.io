@@ -1,31 +1,27 @@
 ---
-layout: bare
+layout: default
+title: Gas Calculator
 ---
-<html>
-    <head>
-        <title>Gas Calculator</title>
-        <meta name=viewport content="width=device-width, initial-scale=1">
 <style>
-* {
+p {
     font-family: sans-serif;
-    font-size: 1.1em;
+    font-size: 1.3em;
+    margin-bottom: 1em;
 }
 label {
     display: inline-block;
     width: 6em;
 }
 input {
-    width: 4em;
+    width: 6em;
+    height: 1.7em;
 }
-a {
+#content a {
     padding-left: 10px;
     text-decoration: none;
 }
-a:visited {
+#content a:visited {
     color: blue;
-}
-p {
-    margin-bottom: 2em;
 }
 .solved {
     background-color: #BCED91;
@@ -75,12 +71,8 @@ window.onload = function() {
     $("solve-mpg").onclick = mpg;
 };
         </script>
-    </head>
-    <body>
         <p><label for="mpg">MPG:</label><input type="number" name="mpg" id="mpg" tabindex=1><a href="#mpg" id="solve-mpg">Solve</a></p>
         <p><label for="price">Price of gas:</label><input type="number" name="price" id="price" tabindex=2><a href="#price" id="solve-price">Solve</a></p>
         <p><label for="miles">Miles:</label><input type="number" name="miles" id="miles" tabindex=3><a href="#miles" id="solve-miles">Solve</a></p>
         <p><label for="total">Total cost:</label><input type="number" name="total" id="total" tabindex=4><a href="#total" id="solve-total">Solve</a></p>
-    </body>
-</html>
 
