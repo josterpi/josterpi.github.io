@@ -4,12 +4,16 @@ title: Blog
 ---
 
 <div class="home">
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-      </li>
-    {% endfor %}
-  </ul>
+  {% for post in site.posts limit: 5 %}
+    {% include blog-post.html post=post %}
+  {% endfor %}
+
+  {% if site.posts.size > 5 %}
+    <h3>More posts</h3>
+    <ul class="post-title-list">
+      {% for post in site.posts offset: 5 %}
+        <li><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 </div>
