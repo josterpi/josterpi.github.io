@@ -21,6 +21,7 @@ last_updated: 6/17/2026
  - [Pomodoro timer](pomodoro/) is unlike any other online timer I've seen on the internet. It's not a digital countdown, blinking at me every second, but is more like an analog kitchen timer
  - [Time Log](timelog/) is a super low effort way to keep track of your time. It stores all of the data on your local computer, so there's no account needed and you have complete privacy
  - [GasCalc](gascalc/) is a minimalist gas cost calculator. Fill in three of MPG, price of gas, miles, and total cost and solve for the final variable.
+ - [Talk Timer](/talktimer/) Uses a pie chart to put on a screen for a speaker to see how much time they have left. Useful for lightning talks. Configurable for duration and wrap-up warning time.
  - [Christmas Carols](carols/) is a mobile-optimized Christmas carol songbook that has all of the carols that I want to sing in one place and skips the 75 carols that I'm not interested in. [Advent Carols](carols/advent/) are also available.
  - [RGB Color Mixer](/color-mixer/) has sliders for red, green, and blue and shows the resulting color. It is intended as a demo for kids rather than being a color picker.
 
