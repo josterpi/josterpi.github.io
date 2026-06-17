@@ -1,12 +1,12 @@
 ---
 layout: josterpi
 title: Jeremy Osterhouse
-last_updated: 1/15/2020
+last_updated: 6/17/2026
 ---
 
 ### About me
 
-  - Here is my [resume](/resume.pdf)
+ - Here is my [resume](/resume.pdf)
  - [One:Ten profile](https://onetencommunications.com/about/#jeremy-osterhouse)
 
 ### Where I am
@@ -22,9 +22,11 @@ last_updated: 1/15/2020
  - [Time Log](timelog/) is a super low effort way to keep track of your time. It stores all of the data on your local computer, so there's no account needed and you have complete privacy
  - [GasCalc](gascalc/) is a minimalist gas cost calculator. Fill in three of MPG, price of gas, miles, and total cost and solve for the final variable.
  - [Christmas Carols](carols/) is a mobile-optimized Christmas carol songbook that has all of the carols that I want to sing in one place and skips the 75 carols that I'm not interested in. [Advent Carols](carols/advent/) are also available.
+ - [RGB Color Mixer](/color-mixer/) has sliders for red, green, and blue and shows the resulting color. It is intended as a demo for kids rather than being a color picker.
 
 ### Other stuff
 
+ - [Blog](/blog/) to capture thoughts and quotes.
  - I moved this web site to [Github Pages](https://pages.github.com/): [josterpi.github.io](https://github.com/josterpi/josterpi.github.io)
  - I typeset my resume with LaTeX. Here are some <a href="/latex-notes.html">notes</a> on LaTeX.
  - <a href="http://www.vim.org/">Vim</a> is my editor of choice and <a href="vim-tips.html">here</a> are some tips that I've been putting together for a while.
