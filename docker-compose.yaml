@@ -1,4 +1,6 @@
-# docker compose up
+# docker compose up [-d]
+# docker compose logs [-f] # follow logs to see errors
+# docker compose down
 # http://localhost:4000
 services:
   jekyll:
