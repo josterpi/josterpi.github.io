@@ -13,7 +13,7 @@ github_username:  josterpi
 
 # Build settings
 markdown: kramdown
-permalink: /:year/:short_month/:title/
+permalink: /:year/:month/:title/
 
 collections:
  - carols
