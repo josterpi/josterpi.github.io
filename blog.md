@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Blog
+title: Blog | Jeremy Osterhouse
 ---
 
 <div class="home">
