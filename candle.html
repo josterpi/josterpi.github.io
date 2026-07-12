@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Candle</title>
+<style>
+  :root {
+    --brightness: 0.75;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    touch-action: none;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ambient room glow, cast from the flame onto the "walls" of the screen */
+  #roomGlow {
+    position: fixed;
+    inset: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(ellipse 70% 60% at 50% 62%,
+      rgba(255, 147, 60, calc(var(--brightness) * 0.55)) 0%,
+      rgba(120, 50, 10, calc(var(--brightness) * 0.22)) 38%,
+      rgba(0, 0, 0, 1) 78%);
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+
+  #stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  #candleWrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8vh;
+    filter: brightness(var(--brightness));
+  }
+
+  /* flame glow halo, sits behind the flame shape */
+  #glow {
+    position: absolute;
+    bottom: 78px;
+    left: 50%;
+    width: 260px;
+    height: 260px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255,190,110,0.9) 0%, rgba(255,140,50,0.35) 35%, rgba(255,90,20,0) 70%);
+    border-radius: 50%;
+    filter: blur(2px);
+    mix-blend-mode: screen;
+  }
+
+  #flame {
+    position: relative;
+    width: 34px;
+    height: 78px;
+    transform-origin: 50% 100%;
+  }
+
+  .layer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: translateX(-50%);
+    mix-blend-mode: screen;
+  }
+
+  #flameOuter {
+    width: 30px;
+    height: 78px;
+    background: linear-gradient(to top, #ff5a1f 0%, #ff9d3d 45%, #ffd27a 75%, #fff4d6 100%);
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  }
+
+  #flameInner {
+    width: 12px;
+    height: 40px;
+    background: linear-gradient(to top, #3a5cff44 0%, #7ea8ff77 30%, #fff4d6 90%);
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+    filter: blur(0.5px);
+  }
+
+  #wick {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 3px;
+    height: 10px;
+    background: #2a1a10;
+    transform: translateX(-50%);
+    border-radius: 1px;
+  }
+
+  #candleBody {
+    width: 70px;
+    height: 140px;
+    background: linear-gradient(to right, #d8c9a8 0%, #f2e6c9 15%, #efe2c2 50%, #e8d9b8 85%, #cbb98f 100%);
+    border-radius: 6px 6px 3px 3px;
+    box-shadow: inset -6px 0 10px rgba(0,0,0,0.15), inset 4px 0 8px rgba(255,255,255,0.4);
+    position: relative;
+    top: 2px;
+  }
+
+  #candleBody::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 4px;
+    right: 4px;
+    height: 12px;
+    background: radial-gradient(ellipse at center, #f7ecd0 0%, #e6d3a3 70%);
+    border-radius: 50%;
+  }
+
+  /* ---------- controls ---------- */
+  #controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px calc(22px + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+
+  #controls.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  #brightnessSlider {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 210, 150, 0.3);
+    outline: none;
+  }
+
+  #brightnessSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffd27a;
+    box-shadow: 0 0 6px rgba(255, 180, 80, 0.8);
+    cursor: pointer;
+  }
+
+  #brightnessSlider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: none;
+    border-radius: 50%;
+    background: #ffd27a;
+    box-shadow: 0 0 6px rgba(255, 180, 80, 0.8);
+    cursor: pointer;
+  }
+
+  .icon {
+    color: rgba(255, 220, 180, 0.75);
+    font-size: 15px;
+    width: 18px;
+    text-align: center;
+    user-select: none;
+  }
+
+  #wakeToggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 210, 150, 0.35);
+    color: rgba(255, 224, 190, 0.85);
+    font-family: inherit;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  #wakeToggle .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #wakeToggle.active .dot {
+    background: #ffd27a;
+    box-shadow: 0 0 6px 1px rgba(255, 180, 80, 0.9);
+  }
+
+  #hint {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    text-align: center;
+    padding-top: calc(18px + env(safe-area-inset-top));
+    color: rgba(255, 224, 190, 0.55);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  #hint.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div id="roomGlow"></div>
+
+<div id="hint">tap anywhere for controls</div>
+
+<div id="stage">
+  <div id="candleWrap">
+    <div id="glow"></div>
+    <div id="flame">
+      <div class="layer" id="flameOuter"></div>
+      <div class="layer" id="flameInner"></div>
+      <div id="wick"></div>
+    </div>
+    <div id="candleBody"></div>
+  </div>
+</div>
+
+<div id="controls">
+  <div class="row">
+    <span class="icon">☾</span>
+    <input type="range" id="brightnessSlider" min="15" max="100" value="75">
+    <span class="icon">☀</span>
+  </div>
+  <button id="wakeToggle"><span class="dot"></span><span id="wakeLabel">Keep screen on</span></button>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const flame = document.getElementById('flame');
+  const glow = document.getElementById('glow');
+  const roomGlow = document.getElementById('roomGlow');
+  const controls = document.getElementById('controls');
+  const hint = document.getElementById('hint');
+  const brightnessSlider = document.getElementById('brightnessSlider');
+  const wakeToggle = document.getElementById('wakeToggle');
+  const wakeLabel = document.getElementById('wakeLabel');
+
+  // ---------- flicker animation ----------
+  // Layered random walk for a natural, non-repeating flicker
+  let t = 0;
+  let sway = 0, swayTarget = 0;
+  let scale = 1, scaleTarget = 1;
+  let glowPulse = 1, glowTarget = 1;
+
+  // room flicker: a slower, subtler walk plus rare "gust" dips,
+  // so the ambient light breathes without ever strobing
+  let roomLevel = 1, roomTarget = 1;
+  let roomDriftX = 0, roomDriftXTarget = 0;
+  let roomDriftY = 0, roomDriftYTarget = 0;
+
+  function animate() {
+    t += 1;
+
+    if (t % 6 === 0) {
+      swayTarget = (Math.random() - 0.5) * 14;
+      scaleTarget = 0.88 + Math.random() * 0.24;
+      glowTarget = 0.85 + Math.random() * 0.3;
+    }
+    sway += (swayTarget - sway) * 0.12;
+    scale += (scaleTarget - scale) * 0.15;
+    glowPulse += (glowTarget - glowPulse) * 0.1;
+
+    flame.style.transform = `rotate(${sway * 0.6}deg) scaleY(${scale}) scaleX(${1 + (1 - scale) * 0.4})`;
+    glow.style.opacity = glowPulse;
+    glow.style.transform = `translateX(calc(-50% + ${sway * 0.8}px)) scale(${0.9 + glowPulse * 0.15})`;
+
+    // retarget the room's ambient level every ~15 frames, occasionally
+    // with a bigger dip to mimic a passing draft
+    if (t % 15 === 0) {
+      roomTarget = Math.random() < 0.12
+        ? 0.55 + Math.random() * 0.2   // a deeper gust
+        : 0.82 + Math.random() * 0.32; // normal flicker range
+      roomDriftXTarget = (Math.random() - 0.5) * 6;
+      roomDriftYTarget = (Math.random() - 0.5) * 4;
+    }
+    roomLevel += (roomTarget - roomLevel) * 0.06;
+    roomDriftX += (roomDriftXTarget - roomDriftX) * 0.04;
+    roomDriftY += (roomDriftYTarget - roomDriftY) * 0.04;
+
+    roomGlow.style.opacity = roomLevel;
+    roomGlow.style.transform = `translate(${roomDriftX}px, ${roomDriftY}px)`;
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+
+  // ---------- brightness ----------
+  function setBrightness(val) {
+    const b = val / 100;
+    root.style.setProperty('--brightness', Math.max(0.15, b));
+  }
+  brightnessSlider.addEventListener('input', (e) => setBrightness(e.target.value));
+  setBrightness(brightnessSlider.value);
+
+  // ---------- controls visibility ----------
+  let hideTimer = null;
+  function showControls() {
+    controls.classList.add('visible');
+    hint.classList.remove('visible');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => controls.classList.remove('visible'), 4000);
+  }
+  document.body.addEventListener('pointerdown', (e) => {
+    // don't toggle away if tapping directly on a control
+    if (e.target.closest('#controls')) return;
+    if (controls.classList.contains('visible')) {
+      controls.classList.remove('visible');
+      clearTimeout(hideTimer);
+    } else {
+      showControls();
+    }
+  });
+  // keep controls open while interacting with them
+  controls.addEventListener('pointerdown', () => clearTimeout(hideTimer));
+  controls.addEventListener('pointerup', showControls);
+
+  setTimeout(() => hint.classList.add('visible'), 600);
+  setTimeout(() => hint.classList.remove('visible'), 4600);
+
+  // ---------- wake lock ----------
+  let wakeLock = null;
+
+  async function requestWakeLock() {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeToggle.classList.add('active');
+      wakeLabel.textContent = 'Screen staying on';
+      wakeLock.addEventListener('release', () => {
+        wakeToggle.classList.remove('active');
+        wakeLabel.textContent = 'Keep screen on';
+      });
+    } catch (err) {
+      wakeLabel.textContent = 'Wake lock unavailable';
+    }
+  }
+
+  function releaseWakeLock() {
+    if (wakeLock) {
+      wakeLock.release();
+      wakeLock = null;
+    }
+  }
+
+  wakeToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!('wakeLock' in navigator)) {
+      wakeLabel.textContent = 'Not supported here';
+      return;
+    }
+    if (wakeLock) {
+      releaseWakeLock();
+    } else {
+      requestWakeLock();
+    }
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => controls.classList.remove('visible'), 4000);
+  });
+
+  document.addEventListener('visibilitychange', async () => {
+    if (wakeLock !== null && document.visibilityState === 'visible') {
+      wakeLock = await navigator.wakeLock.request('screen');
+    }
+  });
+
+  // prevent accidental scroll/zoom
+  document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+  document.addEventListener('gesturestart', (e) => e.preventDefault());
+</script>
+
+</body>
+</html>
