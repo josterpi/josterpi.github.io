@@ -1,0 +1,112 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath}	% just math
+\usepackage{amssymb}	% allow blackboard bold (aka N,R,Q sets)
+\usepackage{amsthm}	% allow blackboard bold (aka N,R,Q sets)
+\linespread{1.6}	% double spaces lines
+
+\textwidth 6.5truein  % These 4 commands define more efficient margins
+\textheight 9.5truein
+\oddsidemargin 0.0in
+\topmargin -0.6in
+
+\parindent 0pt	% let's not indent paragraphs
+\parskip 5pt  % Also, a bit of space between paragraphs
+
+\newtheorem*{lemma1}{Lemma 1}
+\newtheorem*{lemma2}{Lemma 2}
+
+\begin{document}
+\begin{flushright}
+\linespread{1}	% single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+Jeremy Osterhouse \\
+\today
+\end{flushright}
+
+{\bf Problem 1.} Suppose
+\begin{enumerate}
+\item[a)] $f(x)$ continuous for $x \geq a$.
+\item[b)] $f(x) \geq 0$ for $x \geq x$.
+\item[c)] $b>a$.
+\end{enumerate}
+Show that
+\[
+\int_a^\infty f(x) dx \mbox{ convergant } \iff \int_b^\infty f(x) dx \mbox{ convergent.}
+\]
+{\bf Solution 1.}
+\begin{lemma1} For $b>a$,
+\[
+\int_a^\infty f(x) dx = \int_a^b f(x) dx + \int_b^\infty f(x) dx.
+\]
+\begin{proof}
+By the definition of an indefinite integral,
+\[
+\int_a^\infty f(x) dx = \lim_{n \to \infty} \int_a^n f(x) dx.
+\]
+We can split this up into $\lim \int_a^b f(x)dx + \lim \int_b^n f(x)dx$ because we now have a definite integral. Again using the definition of an indefinite integral we have
+\[
+\int_a^b f(x)dx + \int_b^\infty f(x)dx = \int_a^\infty f(x) dx.
+\]
+\end{proof}
+\end{lemma1}
+
+Now, since we are trying to show an if and only if relationship, we must prove the implication both ways. First, let $\int_a^\infty f(x)dx$ be convergant. We must show that $\int_b^\infty f(x)dx$ is convergant. By Lemma 1, we have that $\int_a^\infty f(x) dx = \int_a^b f(x) dx + \int_b^\infty f(x) dx.$ It is given that $\int_a^\infty f(x)dx$ is convergant. $\int_a^b f(x)dx$ is simply a definite integral, so we know that it has some constant value. With these two convergant integrals, we can define $\int_b^\infty f(x)\,dx$ in terms of the integrals from $a$ to $\infty$ and $a$ to $b$.
+\[
+\int_b^\infty f(x)\,dx = \int_a^\infty f(x)\,dx - \int_a^b f(x)\,dx
+\]
+And so if $\int_a^\infty f(x)\,dx$ is convergant, then $\int_b^\infty f(x)\,dx$ must be convergant.
+\hfill$\square$
+
+Next we must show that the converse is true. Let $\int_b^\infty f(x)\,dx$ converge. We must show that this implies that $\int_a^\infty f(x)\,dx$ converges. The argument is very similar to the argument above. Again, by Lemma 1, we have that $\int_a^\infty f(x) dx = \int_a^b f(x) dx + \int_b^\infty f(x) dx$. It is given that $\int_b^\infty f(x)\,dx$ is convergant. $\int_a^b f(x)dx$ is simply a definite integral, so we know that it has some constant value. So, with Lemma 1, we have $\int_b^\infty f(x)\,dx$ equal to two integrals with constant value. Therefore, $\int_b^\infty f(x)\,dx$ must converge.
+\hfill$\square$
+
+And so the implication is proven in both directions and the if and only if relationship is true.
+\hfill$\square$
+
+{\bf Problem 2.} Suppose that $\{a_n\}$ is a sequence such that $a_n$ is defined for $n \geq k$. Suppose that $l>k$. Show
+\[
+\sum_{n=k}^\infty a_n \mbox{ is convergant } \iff \sum_{n=l}^\infty a_n \mbox { is convergant.}
+\]
+
+{\bf Solution 2.} 
+\begin{lemma2} For $l>k$,
+\[
+\sum_{n=k}^\infty a_n = \sum_{n=k}^l a_n + \sum_{n=l}^\infty a_n.
+\]
+\begin{proof}
+By the definition of an indefinite series,
+\[
+\sum_{n=k}^\infty a_n = \lim_{n \to \infty} \sum_{n=k}^n a_n.
+\]
+We can split this up into $\lim \sum_{n=k}^l a_n + \lim \sum_{n=l}^n a_n$ because we now have a definite series. Again using the definition of an indefinite series we have
+\[
+\sum_{n=k}^l a_n + \sum_{n=l}^\infty a_n = \sum_{n=k}^\infty a_n.
+\]
+\end{proof}
+\end{lemma2}
+
+Now, since we are trying to show an if and only if relationship, we must prove the implication both ways. First, let $\sum_{n=k}^\infty a_n$ be convergant. We must show that $\sum_{n=l}^\infty a_n$ is convergant. By Lemma 2, we have that $\sum_{n=k}^\infty a_n = \sum_{n=k}^l a_n + \sum_{n=l}^\infty a_n.$ It is given that $\sum_{n=k}^\infty a_n$ is convergant. $\sum_{n=k}^l a_n$ is simply a definite series, so we know that it has some constant value. With these two convergant series, we can define $\sum_{n=l}^\infty a_n$ in terms of the series from $k$ to $\infty$ and $k$ to $l$.
+\[
+\sum_l^\infty a_n = \sum_{n=k}^\infty a_n - \sum_{n=k}^l a_n
+\]
+And so if $\sum_{n=k}^\infty a_n$ is convergant, then $\sum_{n=l}^\infty a_n$ must be convergant.
+\hfill$\square$
+
+Next we must show that the converse is true. Let $\sum_{n=l}^\infty a_n$ converge. We must show that this implies that $\sum_{n=k}^\infty a_n$ converges. The argument is very similar to the argument above. Again, by Lemma 2, we have that $\sum_{n=k}^\infty a_n = \sum_{n=k}^l a_n + \sum_{n=l}^\infty a_n$. It is given that $\sum_{n=l}^\infty a_n$ is convergant. $\sum_{n=k}^l a_n$ is simply a definite series, so we know that it has some constant value. So, with Lemma 2, we have $\sum_{n=l}^\infty a_n$ equal to two series with constant value. Therefore, $\sum_{n=l}^\infty a_n$ must converge.
+\hfill$\square$
+
+And so the implication is proven in both directions and the if and only if relationship is true.
+\hfill$\square$
+
+
+%add dollar signs around visual selection and leave in insert at end:
+%-->`>a$`<i$f$a
+
+%add QED symbol abbreviation
+%-->ab qed. \hfill$\square$ 
+
+
+
+
+\end{document}

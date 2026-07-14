@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="home">
+  {{ $posts := .Pages.ByDate.Reverse }}
+  {{ range first 5 $posts }}
+    {{ partial "blog-post.html" (dict "post" . "current" $) }}
+  {{ end }}
+
+  {{ if gt (len $posts) 5 }}
+    <h3>More posts</h3>
+    <ul class="post-title-list">
+      {{ range after 5 $posts }}
+        <li><a class="post-link" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}

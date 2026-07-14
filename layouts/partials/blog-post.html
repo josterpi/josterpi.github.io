@@ -1,0 +1,20 @@
+{{ $post := .post }}
+{{ $current := .current }}
+<div class="post">
+
+  <header class="post-header">
+    <h2 class="post-title">
+      {{ if eq $post.RelPermalink $current.RelPermalink }}
+        {{ $post.Title }}
+      {{ else }}
+        <a class="post-link" href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+      {{ end }}
+    </h2>
+    <p class="post-meta">{{ $post.Date.Format "January 2, 2006" }}{{ with $post.Params.author }} &bull; {{ . }}{{ end }}{{ with $post.Params.meta }} &bull; {{ . }}{{ end }}</p>
+  </header>
+
+  <article class="post-content">
+    {{ $post.Content }}
+  </article>
+
+</div>

@@ -1,0 +1,78 @@
+\documentclass[11pt,letterpaper]{article}
+
+\pagestyle{empty} % no header, no footer, no page numbers
+\usepackage{amsmath} % math
+
+% Or use this for spacing.
+\usepackage[left=0.75in,top=0.75in,right=0.75in,bottom=0.75in,nohead,nofoot]{geometry}
+
+% Section of resume: one argument: Name of section
+\newenvironment{ressec}[1]{\begin{tabular}{p{1in}p{5.65in}} \textbf{#1} & }{\end{tabular}}
+
+% Itemize environment for resume. Better layout
+\newenvironment{resitemize}{\begin{tabular}[t]{p{0in}p{5.3in}}}{\end{tabular}}
+% Itemize item for resume
+\newcommand{\resitem}{$\bullet$ & }
+
+% Job item under, say, an 'experience' section. 2 args: job (to be aligned left) and date
+% in parenthesis and aligned right. All of it is bold.
+\newcommand{\resjob}[2]{\parbox{5.65in}{\vspace{0.05in}\textbf{\textsf{#1}} \hfill \textbf{\sf(#2)}\vspace{0.05in}}}
+
+% description of job, under a job item. the argument is the text you want
+\newcommand{\resjobinfo}[1]{\parbox{5.65in}{#1}}
+
+% Small bullet, for use in text mode. Nicer than full sized bullet, in my opinion
+\newcommand{\sbullet}{\,\begin{picture}(1,1)(0,-3)\circle*{3}\end{picture}\ }
+
+\parindent 0pt % let's not indent paragraphs 
+\parskip 5pt  % Also, a bit of space between paragraphs
+
+\begin{document}
+%%% Heading.
+\begin{center}
+	{\LARGE \bf  Your Name} \\
+	{\large \sf your@email.com} \\
+	{\large \sf your address, or really whatever you want to do.} 
+\end{center}
+\hrule
+\begin{ressec}{Objective}
+	Seeking a job in writing \LaTeX resume templates
+\end{ressec}
+
+\begin{ressec}{Education} 
+	% I shouldn't have a parbox here, but haven't abstracted it out yet
+	\parbox{5.65in}{\textbf{\small B.Sci. in Advanced Resume Writing, Expected May 2006}}
+	\parbox{5.65in}{Institute of Technology, University of Minnesota--Twin Cities}
+	\parbox{5.65in}{Minneapolis, MN}
+	\parbox{5.65in}{GPA: 4.0}
+\end{ressec}
+
+\begin{ressec}{Relevant Coursework}
+	Chipmark Project \sbullet Internet Programming \sbullet Introduction to Computer Security \sbullet Software Engineering I \sbullet Intro to Operating Systems \sbullet Algorithms \& Data Structures \sbullet  Program Design and Development \sbullet Formal Languages \& Automata Theory \sbullet Machine Architecture and Organization \sbullet Discrete Structures \sbullet Intro to Numerical Computing \sbullet Computer Programming I \& II 
+\end{ressec}
+
+\begin{ressec}{Computer Skills}
+	\begin{resitemize}
+		\resitem PC hardware, both in building systems and installing hardware. \\
+		\resitem Microsoft Windows 95, 98, 2000, and XP, installing and configuring networking, new hardware, and applications \\
+		\resitem Slackware, Fedora Core, Redhat, Debian, Ubuntu Linuxes, install and configure for desktop and server use. Three years of desktop, development, and server Linux experience. \\
+		\resitem Apache, Tomcat, Proftpd, BIND, MySQL, Samba \\
+		\resitem Java, PHP, C/C++, Perl, SQL, Javascript, Python, Unix scripting, Unix development tools, Visual Basic, HTML, CSS, XML, Scheme, \LaTeX
+	\end{resitemize}
+\end{ressec}
+
+\begin{ressec}{Experience}
+	\resjob{Chipmark Project -- Team Member}{September 2005 -- May 2006}
+	\resjobinfo{Worked in Team Lead, System Administrator, and Security Director roles \sbullet Continued development on the moderately sized (8000 users) Open Source internet bookmarking project: \texttt{www.chipmark.com} \sbullet Developed leadership and teamwork skills.}
+	\resjob{People of Praise -- Web Developer}{August 2004 -- Present}
+	\resjobinfo{Adapted Drupal CMS for use at \texttt{www.peopleofpraise.org} \sbullet Continued development while managing and supporting all technical aspects and development processes of the site for over 1200 users in 21 different branches nationwide \sbullet Set up a wiki to facilitate communication among the national web site team \sbullet Maintained test server, code repository, and thirty email accounts.}
+	\resjob{University of Notre Dame -- Web Developer}{Summer 2004}
+	\resjobinfo{Interned with Dr. Craig Lent: Applied object oriented principles to develop simulations in Java for quantum-dot cellular automata (QCA) including graphical components \sbullet Created the web site \texttt{www.nd.edu/$\sim$qcahome} \sbullet Developed applets for the web site to show the behavior of QCA using my simulations. \sbullet Developed a tool to easily manage and format several hundred references on web site \sbullet Provided support and technical advice for three other programmers.}
+	\resjob{Triple Espresso Company -- Spotlight Engineer}{June 2003 -- May 2004}
+	\resjobinfo{Operated the spotlight for \textit{Triple Espresso---a highly caffeinated comedy} at the Music Box theater in Minneapolis for 200 shows \sbullet Assisted in managing props \sbullet Trained other spotlight engineers \sbullet Did miscellaneous theater electrical work.}
+	\resjob{Barrett Moving \& Storage -- Office and Industrial Mover}{Summers 2001 -- 2003}
+	\resjobinfo{Performed a wide variety of office moving activities---including moving executive office furniture, files, paintings, and computers---while maintaining a high level of concern for personal and product safety and working toward efficiency within the moving team.}
+\end{ressec}
+
+\end{document}
+

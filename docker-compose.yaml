@@ -1,17 +1,11 @@
-# docker compose up [-d]
-# docker compose logs [-f] # follow logs to see errors
+# docker compose up
 # docker compose down
-# http://localhost:4000
+# http://localhost:1313
 services:
-  jekyll:
-    image: jekyll/jekyll:4.2.2
-    command: jekyll serve --trace --watch --force_polling --livereload --drafts
+  hugo:
+    image: hugomods/hugo:exts
+    command: server -D --bind 0.0.0.0
     ports:
-      - "4000:4000"
-      - "35729:35729"   # livereload port
+      - "1313:1313"
     volumes:
-      - .:/srv/jekyll
-      - bundle_cache:/usr/local/bundle   # cache gems between runs
-
-volumes:
-  bundle_cache:
+      - .:/src

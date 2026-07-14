@@ -1,0 +1,102 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath}	% just math
+\usepackage{amssymb}	% allow blackboard bold (aka N,R,Q sets)
+\usepackage{amsthm}	% allow blackboard bold (aka N,R,Q sets)
+\linespread{1.6}	% double spaces lines
+
+\textwidth 6.5truein  % These 4 commands define more efficient margins
+\textheight 9.5truein
+\oddsidemargin 0.0in
+\topmargin -0.6in
+
+\parindent 0pt	% let's not indent paragraphs
+\parskip 5pt  % Also, a bit of space between paragraphs
+
+
+\begin{document}
+\begin{flushright}
+\linespread{1}	% single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+Jeremy Osterhouse \\
+\today
+\end{flushright}
+
+{\bf Exercise 3.7 (Euler's constant).} We know from Exercise 6.3 of Chapter 3 (and also the Integral Test) that
+\[
+1+\frac{1}{2}+\cdots\frac{1}{n}+\cdots=\infty
+\]
+This mean that 
+\[
+\lim{S_n}=\infty,
+\]
+where
+\[
+S_n = 1 + \frac{1}{2}+\cdots \frac{1}{n}.
+\]
+What about the sequence $\{T_n\}$, where
+\begin{eqnarray*}
+T_n & = & 1 + \frac{1}{2}+\cdots\frac{1}{n}-\ln{n} \\
+ & = & S_n - \ln{n}\,?
+\end{eqnarray*}
+
+Calculating a few values of $\{T_n\}$, we have $T_1=0$, $T_2=0.3069$, $T_3=0.4014$, $T_4=0.447$, $T_5=0.4739$, and $T_{1000}=0.5767$. Looking at these values, we hypothesize that $\{T_n\}$ is bounded, monotonic, and so convergant. We shall now prove this.
+
+Recall from the proof of Lemma 3.1, that if $f$ is strictly decreasing and continuous on the interval $[1,\infty )$, then for $n\geq 2$,
+\[
+f(2)+f(3)+\cdots f(n) \leq \int_1^n f(x)\, dx \leq f(1) + f(2) + \cdots + f(n-1).
+\]
+Letting $f(x) = \frac{1}{x}$, we have 
+\[
+\frac{1}{2} + \cdots + \frac{1}{n} \leq \ln{n} \leq 1 + \frac{1}{2} + \frac{1}{n-1}.
+\]
+
+Using the above equation, we can show that $\{T_n\}$ is bounded. By mulipling the inequality by $-1$ (and thereby flipping the directions of the inequalities) and adding $S_n$ we have
+\[
+\left(1 + \frac{1}{2}+\cdots \frac{1}{n}\right) - \frac{1}{2} - \cdots - \frac{1}{n} 
+\geq S_n - \ln{n} \geq 
+\left(1 + \frac{1}{2}+\cdots \frac{1}{n}\right) - 1 - \frac{1}{2} - \cdots - \frac{1}{n-1}.
+\]
+This collapses to
+\[
+1 \geq S_n - \ln{x} \geq \frac{1}{n}.
+\]
+So, for all $n$, $S_n - \ln{n} \leq 1$. That is, it is bounded.
+
+The next step in proving the convergance of $T_n$ is to show that it is monotonic. We have
+\begin{eqnarray*}
+T_{n+1}-T_n & = & (1 + \cdots + \frac{1}{n+1} - \ln{(n+1)}) - (1+ \cdots + \frac{1}{n}-\ln{n}) \\
+& = & \frac{1}{n+1} - [\ln{(n+1)}-\ln{n}].
+\end{eqnarray*}
+To show that $\{T_n\}$ is monotonic, we show that
+\[
+T_{n+1}-T_n < 0.
+\]
+We can use the above equation to show this. We also use the Mean-Value Theorem.
+
+The Mean-Value Theorem states that if a function $f(x)$ is defined and continous on the interval $[a,b]$ and differentiable on $(a,b)$, then there exists a $c \in (a,b)$ such that
+\[
+f'(c)=\frac{f(b)-f(a)}{b-a}.
+\]
+For this problem, let $f(a)=\ln{x}$. This function is defined, continous, and differentiable on $[1,\infty ]$, which is the interval we are interested in. Let $a=n$ and $b=n+1$. Then 
+\[
+\ln{(n+1)}-\ln{n}=\frac{1}{c} \mbox{ for some } c \mbox{ such that } n<c<n+1.
+\]
+We can substitute this into our inequality to get
+\[
+T_{n+1}-\frac{1}{c} < 0 \mbox{ for } n<c<n+1.
+\]
+So the left side can range from $\frac{-1}{n^2+n}$ to 0. Therefore $T_{n+1}-T_n < 0$ for all $n$. We have shown that $\{T_n\}$ is bounded and monotonic, therefore it is convergant.
+\hfill$\square$
+
+
+%add dollar signs around visual selection and leave in insert at end:
+%-->`>a$`<i$f$a
+
+%add QED symbol abbreviation
+%-->ab qed. \hfill$\square$ 
+
+
+
+
+\end{document}

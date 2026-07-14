@@ -1,0 +1,173 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath}	% just math
+\usepackage{amssymb}	% allow blackboard bold (aka N,R,Q sets)
+\usepackage{amsthm}	% allows thm environment
+\linespread{1.6}	% double spaces lines
+
+\textwidth 6.5truein  % These 4 commands define more efficient margins
+\textheight 9.5truein
+\oddsidemargin 0.0in
+\topmargin -0.6in
+
+\parindent 0pt	% let's not indent paragraphs
+\parskip 5pt  % Also, a bit of space between paragraphs
+
+\newtheorem*{lemma1}{Lemma 1}
+\newtheorem*{lemma2}{Lemma 2}
+\newtheorem*{lemma3}{Lemma 3}
+
+\begin{document}
+\begin{flushright}
+\linespread{1}	% single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+Jeremy Osterhouse \\
+\today
+\end{flushright}
+
+{\bf Problem.} For which real numbers $c \geq 0$ does the recursively defined sequence
+\begin{eqnarray*}
+a_1 & = & c, \\
+a_{n+1} & = & \frac{a_n^2+a_n+2}{4}
+\end{eqnarray*}
+converge? If it converges then what is the limit? 
+
+{\bf Solution.} We shall show that for $0 \leq c < 1$, $c = 1$, and $1<c<2$, $\lim{a_n}=1$. We will also show that for $c=2$, $\lim{a_n}=2$ and for $c>2$, $\lim{a_n}=\infty$. First we will show that if $a_n$ converges, it must converge to either 1 or 2. Then we will show that $a_n$ is increasing for $0 \leq c < 1$ and $c>2$. Then we will show that $a_n$ is decreasing for $1 < c < 2$. Five cases for $c$ will become evident from these lemmas. With these lemmas and proofs by induction, the problem will be solved.
+
+\begin{lemma1}[L = 1 or 2]
+The limit of $a_n$ must be either 2 or 1.
+\begin{proof}
+If $a_n$ converges, then as $n$ increases $a_n$ gets closer and closer to some limit $L$. This is also the case for $a_{n+1}$, so we can replace them in the definition of the sequence to get
+\[
+L = \frac{L^2+L+2}{4} \iff 0 = L^2 - 3L + 2 \iff 0 = (L-2)(L-1).
+\]
+Consequently, we see that $L$ must be either 2 or 1. 
+\end{proof}
+\end{lemma1}
+
+\begin{lemma2}[$a_n$ increasing]
+$a_n$ is increasing when $0 \leq c < 1$ and $c > 2$.
+\begin{proof}
+We prove this by induction. 
+
+\emph{Basis.} Let $P(n)$ be the statement 
+\[
+a_n \leq a_{n+1} \mbox{ for } 0 \leq c < 1 \mbox{ and } c > 2.
+\]
+By the definition of the sequence, $a_1 = c$ and $a_2= \frac{c^2+c+2}{4}$. Is $a_1 < a_2$? Algebraicly manipulating the inequality we find
+\[ 
+c \leq \frac{c^2+c+2}{4} \iff 0 \leq c^2-3c+2 \iff 0 \leq (c-2)(c-1).
+\]
+So this is true when $0 \leq c < 1$ and $c > 2$.
+
+\emph{Induction Step.} Suppose that $P(n)$ is true. Then our induction hypothesis is
+\[
+a_n \leq a_{n+1} \mbox{ for } 0 \leq c < 1 \mbox{ and } c > 2.
+\]
+We show that $P(n+1)$ is true.
+\[
+a_{n+1} = \frac{a_n^2+a_n+2}{4} \leq \frac{a_{n+1}^2+a_{n+1}+2}{4} = a_{n+2}.
+\]
+This is true by the induction hypothesis and so $P(n+1)$ is true.
+\end{proof}
+\end{lemma2}
+
+\begin{lemma3}[$a_n$ decreasing]
+$a_n$ is decreasing when $1 < c < 2$.
+\begin{proof}
+We prove this by induction. Note that it is \emph{very} similar to Lemma 2. We include it for completeness.
+
+\emph{Basis.} Let $Q(n)$ be the statement 
+\[
+a_n \geq a_{n+1} \mbox{ for } 1 < c < 2.
+\]
+By the definition of the sequence, $a_1 = c$ and $a_2= \frac{c^2+c+2}{4}$. Is $a_1 < a_2$? Manipulating the inequality we find
+\[ 
+c \geq \frac{c^2+c+2}{4} \iff 0 \geq c^2-3c+2 \iff 0 \geq (c-2)(c-1).
+\]
+So this is true when $0 < c < 1$.
+
+\emph{Induction Step.} Suppose that $Q(n)$ is true. Then our induction hypothesis is
+\[
+a_n \geq a_{n+1} \mbox{ for } 1 < c < 2.
+\]
+We show that $Q(n+1)$ is true.
+\[
+a_{n+1} = \frac{a_n^2+a_n+2}{4} \geq \frac{a_{n+1}^2+a_{n+1}+2}{4} = a_{n+2}.
+\]
+This is true by the induction hypothesis and so $Q(n+1)$ is true.
+\end{proof}
+\end{lemma3}
+
+It may not be obvious, but the heart of the argument has now been proven in these three lemmas. From lemma 1 we know what $a_n$ converges to, if it converges. From lemmas 2 and 3, we know at what starting points $c$, $a_n$ is increasing and decreasing. From these ranges, and the addition of the $c=1$ and $c=2$, we can cover the entire range of $c$. There are five cases:
+
+\begin{description}
+\item[Case 1: ($0 \leq c < 1$).] By Lemma 2, note that in this range, $a_n$ is increasing. If we can show that it is bounded, then we know that is must be convergant. Since we know that by Lemma 1, the possible limits for the sequence are 1 and 2, let us guess that when $0 \leq c < 1$, $a_n<1$ for all $n$. We will show this by induction.
+
+\emph{Basis.} Let $R(n)$ be the statement that
+\[
+a_n<1 \mbox{ for } 0 \leq c < 1.
+\]
+Then $R(1)$ is $c = a_1 < 1$, which is true by the conditions of this case. 
+
+\emph{Induction Step.} Note that $R(n)$ is our induction hypothesis. Now we show that $R(n+1)$ is true.
+\[
+a_{n+1} = \frac{a_n^2+a_n+2}{4} < \frac{1 + 1 + 2}{4} = 1
+\]
+This is true, that is, $R(n+1)$ is true, so 1 is an upper bound of $a_n$. By Lemma 1, the possible limits of $a_n$ are 1 and 2. We have just shown that when $0 \leq c < 1$, $a_n$ is bounded above. By Lemma 2, we know that the sequence is increasing. Consequently, the limit of $a_n$ when $0 \leq c < 1$ is 1.
+
+\item[Case 2: ($c=1$).] Looking at a few terms, $a_1=1,a_2=1,a_3=1$. Let us guess that $a_n=1$ for all $n$.
+
+\emph{Basis.} Let $S(n)$ be the statement that
+\[
+a_n=1 \mbox{ for } c=1.
+\]
+Then $S(1)$ is true, since $a_1=1$.
+
+\emph{Induction Step.} Note that $S(n)$ is our induction hypothesis. We now show that $S(n+1)$ is true. That is,
+\[
+a_{n+1} = \frac{a_n^2+a_n+2}{4} = \frac{1^2+1+2}{4} = 1 \qquad \mbox{(by the induction hypothesis)}
+\]
+Thus $S(n+1)$ is true. Consequently, the limit of $a_n$ when $c=1$ is 1.
+
+\item[Case 3: ($1<c<2$).] By Lemma 3, note that in this range, $a_n$ is decreasing. If we can show that it is bounded, then we know that is must be convergant. Since we know that by Lemma 1, the possible limits for the sequence are 1 and 2, let us guess that when $1<c<2$, $a_n>1$ for all $n$. We will show this by induction.
+
+\emph{Basis.} Let $T(n)$ be the statement that
+\[
+a_n>1 \mbox{ for } 1<c<2.
+\]
+Then $T(1)$ is $c = a_1 > 1$, which is true by the conditions of this case. 
+
+\emph{Induction Step.} Note that $T(n)$ is our induction hypothesis. Now we show that $T(n+1)$ is true.
+\[
+a_{n+1} = \frac{a_n^2+a_n+2}{4} > \frac{1 + 1 + 2}{4} = 1
+\]
+This is true, that is, $T(n+1)$ is true, so 1 is lower bound of $a_n$. By Lemma 1, the possible limits of $a_n$ are 1 and 2. We have just shown that when $1<c<2$, $a_n$ is bounded below. By Lemma 3, we know that the sequence is decreasing. Consequently, the limit of $a_n$ when $1<c<2$ is 1.
+
+\item[Case 4: ($c=2$).] Looking at a few terms, $a_1=2,a_2=2,a_3=2$. Let us guess that $a_n=2$ for all $n$.
+
+\emph{Basis.} Let $U(n)$ be the statement that
+\[
+a_n=2 \mbox{ for } c=2.
+\]
+Then $S(1)$ is true, since $a_1=2$.
+
+\emph{Induction Step.} Note that $S(n)$ is our induction hypothesis. We now show that $S(n+1)$ is true. That is,
+\[
+a_{n+1} = \frac{a_n^2+a_n+2}{4} = \frac{2^2+2+2}{4} = 2 \qquad \mbox{(by the induction hypothesis)}
+\]
+Thus $S(n+1)$ is true. Consequently, the limit of $a_n$ when $c=2$ is 2.
+
+\item[Case 5: ($c>2$).] By Lemma 2, we know that $a_n$ is increasing on this interval. By Lemma 1, we know that the limit of this sequence must be either 1 or 2. So, since the sequence is increasing away from the only possible limits, it must be divergent.
+\end{description}
+
+In conclusion, for $0 \leq c < 1$, $c = 1$, and $1<c<2$, $\lim{a_n}=1$; for $c=2$, $\lim{a_n}=2$ and for $c>2$, $\lim{a_n}=\infty$.  \hfill$\square$ 
+
+%add dollar signs around visual selection and leave in insert at end:
+%-->`>a$`<i$f$a
+
+%add QED symbol abbreviation
+%-->ab qed. \hfill$\square$ 
+
+
+\end{document}

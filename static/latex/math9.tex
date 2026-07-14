@@ -1,0 +1,80 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amsmath}	% just math
+\usepackage{amssymb}	% allow blackboard bold (aka N,R,Q sets)
+\usepackage{amsthm}	% allow blackboard bold (aka N,R,Q sets)
+\linespread{1.6}	% double spaces lines
+
+\textwidth 6.5truein  % These 4 commands define more efficient margins
+\textheight 9.5truein
+\oddsidemargin 0.0in
+\topmargin -0.6in
+
+\parindent 0pt	% let's not indent paragraphs
+\parskip 5pt  % Also, a bit of space between paragraphs
+
+
+\begin{document}
+\begin{flushright}
+\linespread{1}	% single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+Jeremy Osterhouse \\
+\today
+\end{flushright}
+
+{\bf Problem.} Look at the infinite series
+\[
+1 - \frac{{(3/2)}^2}{2!} + \frac{{(3/2)}^4}{4!} - \frac{{(3/2)}^6}{6!} + \cdots + \frac{{(-1)^n (3/2)}^{2n}}{(2n)!}\qquad\qquad\mbox{(*)}
+\]
+
+Start by useing the Alternating-Series Test to estimate the value of this infinite series with error less than 0.001. Finally, use your calculator to compute the value of $cos(3/2)$ correct to a fairly large number of decimal places. Come up with a conjecture about the value of the infinite series.
+
+{\bf Solution.} First we use the Alternating-Series Test to show that (*) is convergent. The Alternating-Series Test states that for  $a_n > 0$ for all n, and  $\{a_n\}$ is a strictly decreasing sequence, and $a_n \rightarrow 0$. Then the infinite series $\sum_{n=1}^\infty (-1)^{n+1}a_n$ is convergent.
+
+Our series can be put into the form $\sum_{n=1}^{\infty}(-1)^{n+1} a_n$ where $a_n = \frac{{(3/2)}^{2n}}{(2n)!}$. So first we must show that $a_n > 0$ for all $n$. We see that all numbers involved are positive and exponentiation and factorial do not result in negative numbers for all $n > 1$ which is the $n$ we are interested in, so $a_n > 0$ for all $n$. 
+
+Next we show that the sequence is strictly decreasing, that is, $a_n > a_{n+1}$ for all $n$. We have
+\[ 
+a_n > \frac{{(3/2)}^{2n+2}}{(2n+2)!} = a_n\cdot\frac{(3/2)^2}{(2n+2)(2n+1)}.
+\]
+In order for this to be true, it must be the case that $\frac{(3/2)^2}{(2n+2)(2n+1)}<1$. So,
+\[
+1 > \frac{(3/2)^2}{(2n+2)(2n+1)} = \frac{9/4}{4n^2+6n+2} = \frac{9}{16n^2+24n+8}.
+\]
+This is true if and only if $16n^2+24n>1$, which it certainly is for $n>1$. Now, we have that $a_n$ is strictly decreasing.
+
+Finally, for the Alternating-Series Test, we show that $a_n \rightarrow 0$.  We approach this limit using a somewhat roundabout method. We show that $\sum a_n$ converges, which implies that $a_n \rightarrow 0$ by the $n$-th term test. We use the the Ratio Test. We already have that $a_n>0$. Then,
+\[
+\lim \frac{a_{n+1}}{a_n} = \frac{\frac{{(3/2)}^{2n+2}}{(2n+2)!}}{\frac{{(3/2)}^{2n}}{(2n)!}} = 
+\lim \frac{{(3/2)}^{2n+2}}{(2n+2)!} \cdot \frac{(2n)!}{{(3/2)}^{2n}} =
+\lim \frac{(3/2)^2}{(n+1)(n+2)} = 0.
+\]
+The limit of the ratio is less than 1, so by the Ratio Test, $\sum_{n=1}^\infty a_n$ is convergent. Then, by the contrapositive of the $n$-th term test, $\lim a_n = 0$.
+
+Having shown that all of the condition of the Alternating-Series Test hold true, we conclude that (*) is convergant.\hfill$\square$
+
+We can continue to use the Alternating-Series Test to find an approximation to this infinite series with error less than 0.001. The Alternating-Series Test states: Let $\sum_{n=1}^{\infty}(-1)^{n+1} a_n = L$. Then for all $n$,
+\[
+|S_n - L| < a_{n+1},
+\]
+Where $S_n$ is the partial sum, $S_n = a_1 - a_2 + \cdots + (-1)^{n+1}a_n$.
+
+To find the approximation, we find an $|a_n| \leq  0.001$. With some calculations, we find that $a_3 \approx 0.0158$ and $a_4\approx 0.0006356$, so we will use $a_4$. Now, by the Alternating-Series Test, we have that $|S_4 - L| < a_4$. That is, the difference between the partial sum at 4 and the actual limit is less that 0.00063 is less than 0.001. Computing this sum, we get
+\[
+S_4 = 1 - \frac{{(3/2)}^2}{2!} + \frac{{(3/2)}^4}{4!} - \frac{{(3/2)}^6}{6!} + \frac{{(3/2)}^8}{8!} \approx 0.070752\ldots
+\]
+
+Now, computing the value of $\cos(3/2)$ with a calculator, we have $\cos(3/2) \approx 0.07073720$. Noting that that $S_4$ and the calculation of $\cos(3/2)$ are very similar, at least within an error of 0.001, we conject that our infinite series (*) is equal to $\cos(3/2)$.
+
+
+
+%add dollar signs around visual selection and leave in insert at end:
+%-->`>a$`<i$f$a
+
+%add QED symbol abbreviation
+%-->ab qed. \hfill$\square$ 
+
+
+
+
+\end{document}

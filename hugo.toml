@@ -1,0 +1,31 @@
+baseURL = "https://josterpi.com"
+languageCode = "en-us"
+title = "Jeremy's web site"
+
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 5
+
+[params]
+  author = "Jeremy Osterhouse"
+  description = "Jeremy Osterhouse's personal web site."
+  twitter_username = "josterpi"
+  github_username = "josterpi"
+
+[permalinks]
+  blog = "/:year/:month/:title/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+
+[outputFormats.RSS]
+  mediaType = "application/rss+xml"
+  baseName = "feed"
+  isPlainText = true
+
+[taxonomies]
+
+[markup.goldmark.renderer]
+  unsafe = true
