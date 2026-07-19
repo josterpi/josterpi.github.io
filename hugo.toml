@@ -29,3 +29,6 @@ enableRobotsTXT = true
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[markup.highlight]
+  style = "pygments"
